@@ -49,12 +49,12 @@ TARGET_LOCALE="vzw"
 
 #uncomment to add custom version string
 #export KBUILD_BUILD_VERSION="nubernel-EC05_v0.0.0"
-DEFCONFIG_STRING=victory_8G_defconfig
+DEFCONFIG_STRING=cyanogenmod_epic_defconfig
 
 #TOOLCHAIN=`pwd`/toolchains/android-toolchain-4.4.3/bin
 #TOOLCHAIN_PREFIX=arm-linux-androideabi-
-TOOLCHAIN=/usr/local/toolchain/arm-2009q3/bin
-TOOLCHAIN_PREFIX=arm-none-linux-gnueabi-
+TOOLCHAIN=../../../../prebuilt/linux-x86/toolchain/arm-eabi-4.4.3/bin
+TOOLCHAIN_PREFIX=arm-eabi-
 
 KERNEL_BUILD_DIR=`pwd`/Kernel
 ANDROID_OUT_DIR=`pwd`/Android/out/target/product/SPH-D700
@@ -104,9 +104,11 @@ BUILD_KERNEL()
 	echo
 	pushd $KERNEL_BUILD_DIR
 		export KDIR=`pwd`
+		make clean mrproper
 		make ARCH=arm $DEFCONFIG_STRING
 #		make -j$CPU_JOB_NUM ARCH=arm CROSS_COMPILE=$TOOLCHAIN/$TOOLCHAIN_PREFIX
 		make V=1 -j$CPU_JOB_NUM ARCH=arm CROSS_COMPILE=$TOOLCHAIN/$TOOLCHAIN_PREFIX 2>&1 | tee make.out
+		cp arch/arm/boot/zImage ../../../../device/samsung/epic/kernel
 	popd
 }
 
