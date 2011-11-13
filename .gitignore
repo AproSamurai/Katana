@@ -70,3 +70,5 @@ Kernel/usr/gen_init_cpio
 Kernel/usr/initramfs_data.cpio
 Kernel/make.out
 Kernel/vmlinux
+
+.DS_Store
