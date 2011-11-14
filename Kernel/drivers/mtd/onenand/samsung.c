@@ -44,21 +44,7 @@ enum soc_type {
 
 /* START OF DEVICE SPECIFIC PARTITION LAYOUT */
 
-#if defined(CONFIG_SAMSUNG_CAPTIVATE)
-#include "samsung_captivate.h"
-#elif defined(CONFIG_SAMSUNG_EPIC)
 #include "samsung_epic.h"
-#elif defined(CONFIG_SAMSUNG_FASCINATE)
-#include "samsung_fascinate.h"
-#elif defined(CONFIG_SAMSUNG_GALAXYS)
-#include "samsung_galaxys.h"
-#elif defined(CONFIG_SAMSUNG_GALAXYSB)
-#include "samsung_galaxysb.h"
-#elif defined(CONFIG_SAMSUNG_VIBRANT)
-#include "samsung_vibrant.h"
-#else
-#include "samsung.h"
-#endif
 
 /* END OF DEVICE SPECIFIC PARTITION LAYOUT */
 
