@@ -106,9 +106,9 @@ BUILD_KERNEL()
 		export KDIR=`pwd`
 		make clean mrproper
 		make ARCH=arm $DEFCONFIG_STRING
-#		make -j$CPU_JOB_NUM ARCH=arm CROSS_COMPILE=$TOOLCHAIN/$TOOLCHAIN_PREFIX
-		make V=1 -j$CPU_JOB_NUM ARCH=arm CROSS_COMPILE=$TOOLCHAIN/$TOOLCHAIN_PREFIX 2>&1 | tee make.out
-		cp arch/arm/boot/zImage ../../../../device/samsung/epic/kernel
+		make -j$CPU_JOB_NUM ARCH=arm CROSS_COMPILE=$TOOLCHAIN/$TOOLCHAIN_PREFIX 2>&1 | tee make.out
+#		make V=1 -j$CPU_JOB_NUM ARCH=arm CROSS_COMPILE=$TOOLCHAIN/$TOOLCHAIN_PREFIX 2>&1 | tee make.out
+		cp arch/arm/boot/zImage /home/nubecoder/cm_android/system/device/samsung/epic/kernel
 	popd
 }
 
