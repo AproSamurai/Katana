@@ -3,7 +3,6 @@
 #
 #   Copyright(c) 2004-2009, Samsung Electronics, Co., Ltd.
 #
-ifeq ($(CONFIG_USE_BML),y)
 
 EXTRA_CFLAGS	+= -I$(srctree)/drivers/tfsr/Inc \
 		   -I$(srctree)/drivers/tfsr
@@ -46,5 +45,4 @@ ifeq ($(PATCHLEVEL),4)
 include Makefile.24
 else
 include $(srctree)/drivers/tfsr/Makefile.26
-endif
 endif
