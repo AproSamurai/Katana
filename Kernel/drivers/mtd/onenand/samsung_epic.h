@@ -49,11 +49,11 @@ struct mtd_partition s3c_partition_info[] = {
 		.offset		= (1206*SZ_256K),
 		.size		= (2056*SZ_256K), //3261
 	},
-	{       /* we should consider moving this before the modem at the end
+	       /* we should consider moving this before the modem at the end
 	           that would allow us to change the partitions before without
 	           loosing ths sensible data*/
 		/* Empty STL partition on Epic. */
-/*		.name		= "efs",
+/*	{	.name		= "efs",
 		.offset		= (2*SZ_256K),
 		.size		= (40*SZ_256K), //41
 	}, */
