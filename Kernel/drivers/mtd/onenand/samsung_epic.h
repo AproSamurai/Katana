@@ -47,28 +47,12 @@ struct mtd_partition s3c_partition_info[] = {
 	{	
 		.name		= "userdata",
 		.offset		= (1206*SZ_256K),
-		.size		= (2056*SZ_256K), //3261
-	},
-	       /* we should consider moving this before the modem at the end
-	           that would allow us to change the partitions before without
-	           loosing ths sensible data*/
-		/* Empty STL partition on Epic. */
-/*	{	.name		= "efs",
-		.offset		= (2*SZ_256K),
-		.size		= (40*SZ_256K), //41
-	}, */
-	{       /* the modem firmware has to be mtd5 as the userspace samsung ril uses
-	           this device hardcoded, but I placed it at the end of the NAND to be
-	           able to change the other partition layout without moving it */
-		/* Empty BML partition on Epic. */
-		.name		= "radio",
-		.offset		= (3962*SZ_256K),
-		.size		= (50*SZ_256K), //4011
+		.size		= (2706*SZ_256K), //3911
 	},
 	{
 		.name		= "cache",
-		.offset		= (3262*SZ_256K),
-		.size		= (700*SZ_256K), //3961
+		.offset		= (3912*SZ_256K),
+		.size		= (100*SZ_256K), //4011
 	},
         { /* The reservoir area is used by Samsung's Block Management Layer (BML)
              to map good blocks from this reservoir to bad blocks in user
