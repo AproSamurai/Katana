@@ -139,6 +139,7 @@
 #define FLEXONENAND_CMD_PI_UPDATE	(0x05)
 #define FLEXONENAND_CMD_PI_ACCESS	(0x66)
 #define FLEXONENAND_CMD_RECOVER_LSB	(0x05)
+#define ONENAND_CMD_SUPERLOAD		(0x03)		// 4 KB page
 
 /* NOTE: Those are not *REAL* commands */
 #define ONENAND_CMD_BUFFERRAM		(0x1978)
