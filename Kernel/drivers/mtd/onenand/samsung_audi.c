@@ -105,6 +105,25 @@ static void __iomem * onenandctl_vbase = NULL;
 #define DMA_IN2OUT			0
 #define DMA_OUT2IN			1
 
+#ifdef CONFIG_MTD_CMDLINE_PARTS
+static const char *part_probes[] = { "cmdlinepart", NULL };
+#endif
+
+struct onenand_info {
+	struct mtd_info		mtd;
+	struct mtd_partition	*parts;
+	struct onenand_chip	onenand;
+	struct resource		*base_res;
+	struct resource		*ctl_res;
+};
+
+
+/* START OF DEVICE SPECIFIC PARTITION LAYOUT */
+
+#include "samsung_epic.h"
+
+/* END OF DEVICE SPECIFIC PARTITION LAYOUT */
+
 
 /* Default Flex-OneNAND boundary and lock respectively */
 static int flex_bdry[MAX_DIES * 2] = { -1, 0, -1, 0 };
