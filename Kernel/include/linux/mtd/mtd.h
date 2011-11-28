@@ -327,19 +327,9 @@ static inline void mtd_erase_callback(struct erase_info *instr)
 #define MTD_DEBUG_LEVEL2	(2)	/* Loud    */
 #define MTD_DEBUG_LEVEL3	(3)	/* Noisy   */
 
-#ifdef CONFIG_MTD_DEBUG
 #define DEBUG(n, args...)				\
 	do {						\
-		if (n <= CONFIG_MTD_DEBUG_VERBOSE)	\
 			printk(KERN_INFO args);		\
 	} while(0)
-#else /* CONFIG_MTD_DEBUG */
-#define DEBUG(n, args...)				\
-	do {						\
-		if (0)					\
-			printk(KERN_INFO args);		\
-	} while(0)
-
-#endif /* CONFIG_MTD_DEBUG */
 
 #endif /* __MTD_MTD_H__ */
