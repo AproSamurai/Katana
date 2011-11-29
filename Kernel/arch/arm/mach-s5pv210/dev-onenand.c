@@ -33,7 +33,7 @@ static struct resource s5pc110_onenand_resources[] = {
 };
 
 struct platform_device s5pc110_device_onenand = {
-	.name		= "s5pc110-onenand",
+	.name		= "s5p-onenand",
 	.id		= -1,
 	.num_resources	= ARRAY_SIZE(s5pc110_onenand_resources),
 	.resource	= s5pc110_onenand_resources,

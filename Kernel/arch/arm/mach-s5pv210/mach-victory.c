@@ -3141,6 +3141,9 @@ static struct platform_device *victory_devices[] __initdata = {
 	&s5pv210_device_fiqdbg_uart2,
 #endif
 	&s5pc110_device_onenand,
+#ifdef CONFIG_MTD_ONENAND
+    &s5p_device_onenand,
+#endif
 #ifdef CONFIG_RTC_DRV_S3C
 	&s5p_device_rtc,
 #endif
@@ -3259,7 +3262,7 @@ static void __init victory_map_io(void)
 	s3c24xx_init_uarts(victory_uartcfgs, ARRAY_SIZE(victory_uartcfgs));
 	s5p_reserve_bootmem(victory_media_devs, ARRAY_SIZE(victory_media_devs));
 #ifdef CONFIG_MTD_ONENAND
-	s5pc110_device_onenand.name = "s5pc110-onenand";
+	s5pc110_device_onenand.name = "s5p-onenand";
 #endif
 }
 
