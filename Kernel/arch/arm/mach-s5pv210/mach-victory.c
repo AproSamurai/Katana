@@ -3140,7 +3140,6 @@ static struct platform_device *victory_devices[] __initdata = {
 #ifdef CONFIG_FIQ_DEBUGGER
 	&s5pv210_device_fiqdbg_uart2,
 #endif
-	&s5pc110_device_onenand,
 #ifdef CONFIG_MTD_ONENAND
     &s5p_device_onenand,
 #endif
