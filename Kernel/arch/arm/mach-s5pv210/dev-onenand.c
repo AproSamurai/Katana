@@ -19,24 +19,21 @@
 #include <mach/irqs.h>
 #include <mach/map.h>
 
-static struct resource s5pc110_onenand_resources[] = {
+/* OneNAND Controller */
+static struct resource s5p_onenand_resource[] = {
 	[0] = {
-		.start	= S5PC110_PA_ONENAND,
-		.end	= S5PC110_PA_ONENAND + SZ_128K - 1,
-		.flags	= IORESOURCE_MEM,
-	},
-	[1] = {
-		.start	= S5PC110_PA_ONENAND_DMA,
-		.end	= S5PC110_PA_ONENAND_DMA + SZ_2K - 1,
-		.flags	= IORESOURCE_MEM,
-	},
+		.start = S5P_PA_ONENAND,
+		.end   = S5P_PA_ONENAND + S5P_SZ_ONENAND - 1,
+		.flags = IORESOURCE_MEM,
+	}
 };
 
 struct platform_device s5p_device_onenand = {
 	.name		= "s5p-onenand",
 	.id		= -1,
-	.num_resources	= ARRAY_SIZE(s5pc110_onenand_resources),
-	.resource	= s5pc110_onenand_resources,
+	.num_resources	= ARRAY_SIZE(s5p_onenand_resource),
+	.resource	= s5p_onenand_resource,
+};,
 };
 
 EXPORT_SYMBOL(s5p_device_onenand);
