@@ -3192,7 +3192,11 @@ static int do_otp_read(struct mtd_info *mtd, loff_t from, size_t len,
 	this->wait(mtd, FL_OTPING);
 
 	ret = ONENAND_IS_SINGLE_DATARAM(this) ?
+#ifdef ONENAND_SUPERLOAD
+		onenand_multiple_read_ops_nolock(mtd, from, &ops) :
+#else
 		onenand_simple_read_ops_nolock(mtd, from, &ops) :
+#endif
 		onenand_read_ops_nolock(mtd, from, &ops);
 
 	/* Exit OTP access mode */
