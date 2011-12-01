@@ -33,6 +33,7 @@ struct platform_device s5p_device_onenand = {
 	.id		= -1,
 	.num_resources	= ARRAY_SIZE(s5p_onenand_resource),
 	.resource	= s5p_onenand_resource,
+};,
 };
 
 EXPORT_SYMBOL(s5p_device_onenand);
