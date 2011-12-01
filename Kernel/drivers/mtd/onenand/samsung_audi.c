@@ -942,11 +942,7 @@ static int onenand_sync_read_bufferram(struct mtd_info *mtd, int area,
 	void __iomem *dest_addr = NULL;
 
 	/* physical address */
-#ifndef CONFIG_CPU_S5PV310_EVT1
-	src_addr = (void __iomem *)area;
-#else
 	src_addr = (void __iomem *)onenand_pbase + area;
-#endif
 	src_addr += onenand_bufferram_offset(mtd, area) + offset;
 
 #if 1
@@ -974,11 +970,7 @@ static int onenand_sync_read_bufferram(struct mtd_info *mtd, int area,
 		int point_max = ((offset + count + ONENAND_DMA_ALIGN - 1)
 		                 / ONENAND_DMA_ALIGN) * ONENAND_DMA_ALIGN;
 
-#ifndef CONFIG_CPU_S5PV310_EVT1
-		src_addr = (void __iomem *)area;
-#else
 		src_addr = (void __iomem *)onenand_pbase + area;
-#endif
 		src_addr += onenand_bufferram_offset(mtd, area);
 		dest_addr = (void __iomem *)virt_to_phys(this->page_buf);
 
@@ -1177,11 +1169,7 @@ static int onenand_sync_write_bufferram(struct mtd_info *mtd, int area,
 	}
 #endif
 
-#ifndef CONFIG_CPU_S5PV310_EVT1
-	dest_addr = (void __iomem *)area;
-#else
 	dest_addr = (void __iomem *)onenand_pbase + area;
-#endif
 	dest_addr += onenand_bufferram_offset(mtd, area) + offset;
 
 	__dma_single_cpu_to_dev(buffer + offset, count, DMA_TO_DEVICE);
