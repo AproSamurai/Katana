@@ -825,7 +825,7 @@ struct input_absinfo {
 #if defined CONFIG_MACH_VICTORY
 //Thomas Ryu, Define the KYEs for HARD Reset
 #define KERNEL_SEC_HARDRESET_KEY1 51 //Volume Up
-#define KERNEL_SEC_HARDRESET_KEY2 58 //PWR
+#define KERNEL_SEC_HARDRESET_KEY2 116 //PWR
 #define KERNEL_SEC_HARDRESET_KEY3 46 //Camera
 #endif
 #endif
