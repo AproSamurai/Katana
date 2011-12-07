@@ -80,28 +80,28 @@ static struct input_handler *input_table[8];
 #ifdef USE_PSEUDO_HARD_RESET
 static void input_chk_hardreset(unsigned int code, int value)
 {
-  static int key1=0, key2=0, key3=0;
-  if(value)
-  {
-    if(code==KERNEL_SEC_HARDRESET_KEY1)
-      key1 = 1;
-   else if(code==KERNEL_SEC_HARDRESET_KEY2)
-      key2 = 1;
-   else if(code==KERNEL_SEC_HARDRESET_KEY3)
-      key3 = 1;
-    if(key1 && key2 && key3) {
-      kernel_sec_hw_reset(true);
-      //reboot(LINUX_REBOOT_CMD_RESTART);
-    }
-  }
-  else {
-    if(code==KERNEL_SEC_HARDRESET_KEY1)
-      key1 = 0;
-    else if(code==KERNEL_SEC_HARDRESET_KEY2)
-      key2 = 0;
-    else if(code==KERNEL_SEC_HARDRESET_KEY3)
-      key3 = 0;
-  }
+	static int key1=0, key2=0, key3=0;
+	if(value)
+	{
+		if(code==KERNEL_SEC_HARDRESET_KEY1)
+			key1 = 1;
+		else if(code==KERNEL_SEC_HARDRESET_KEY2)
+			key2 = 1;
+		else if(code==KERNEL_SEC_HARDRESET_KEY3)
+			key3 = 1;
+		if(key1 && key2 && key3) {
+			kernel_sec_hw_reset(true);
+			//reboot(LINUX_REBOOT_CMD_RESTART);
+		}
+	}
+	else {
+		if(code==KERNEL_SEC_HARDRESET_KEY1)
+			key1 = 0;
+		else if(code==KERNEL_SEC_HARDRESET_KEY2)
+			key2 = 0;
+		else if(code==KERNEL_SEC_HARDRESET_KEY3)
+			key3 = 0;
+	}
 }
 #endif
 
@@ -450,14 +450,14 @@ void input_event(struct input_dev *dev,
 #endif //CONFIG_KERNEL_DEBUG_SEC
 
 #ifdef USE_PSEUDO_HARD_RESET
-  if((dev->name) != 0) {
-    if(strcmp(dev->name,"s3c-keypad")==0)
-      strcmp(dev->name,"victory-keypad") == 0)    
-     {
-      //Checking Hard Reset Condition
-      input_chk_hardreset(code, value);
-    }
-  }
+	if((dev->name) != 0) {
+		if(strcmp(dev->name,"s3c-keypad")==0 ||
+			strcmp(dev->name,"victory-keypad") == 0)
+		{
+			//Checking Hard Reset Condition
+			input_chk_hardreset(code, value);
+		}
+	}
 #endif
 
 	#ifdef CONFIG_MACH_ATLAS
