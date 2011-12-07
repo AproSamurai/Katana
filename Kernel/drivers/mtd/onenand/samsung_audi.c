@@ -50,7 +50,7 @@
 
 #define DRIVER_NAME	"s5p-onenand"
 
-//#define ONENAND_SUPERLOAD			// Enable Superload command (4KB page only)
+#define ONENAND_SUPERLOAD			// Enable Superload command (4KB page only)
 
 #ifdef CONFIG_PM
 #define ONENAND_CLOCK_GATING
