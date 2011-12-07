@@ -1,7 +1,11 @@
 #
 # Automatically generated make config: don't edit
 # Linux kernel version: 2.6.35.7
+<<<<<<< HEAD
 # Wed Dec 14 05:35:43 2011
+=======
+# Tue Dec  6 20:51:25 2011
+>>>>>>> 5de245d... First Set of commits for hard reset~Via Nubecoder.
 #
 CONFIG_ARM=y
 CONFIG_HAVE_PWM=y
@@ -1537,6 +1541,8 @@ CONFIG_FB_S3C_NR_BUFFERS=2
 # CONFIG_FB_S3C_LTE480WV is not set
 # CONFIG_FB_S3C_HT101HD1 is not set
 CONFIG_FB_S3C_TL2796=y
+CONFIG_FB_VOODOO=y
+# CONFIG_FB_VOODOO_DEBUG_LOG is not set
 # CONFIG_FB_S3C_S6D16A0X is not set
 # CONFIG_FB_S3C_NT35580 is not set
 # CONFIG_FB_S3C_LVDS is not set
