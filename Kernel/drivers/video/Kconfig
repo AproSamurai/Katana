@@ -248,7 +248,7 @@ comment "Frame buffer hardware drivers"
 	depends on FB
 
 if !S5PV210_GARNETT_DELTA
-        source  "drivers/video/samsung/Kconfig"
+	source  "drivers/video/samsung/Kconfig"
 endif
 
 if S5PV210_GARNETT_DELTA
