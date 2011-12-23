@@ -49,7 +49,7 @@ TARGET_LOCALE="vzw"
 
 #uncomment to add custom version string
 #export KBUILD_BUILD_VERSION="nubernel-EC05_v0.0.0"
-DEFCONFIG_STRING=cyanogenmod_epic_defconfig
+DEFCONFIG_STRING=cyanogenmod_epicmtd_defconfig
 
 #TOOLCHAIN=`pwd`/toolchains/android-toolchain-4.4.3/bin
 #TOOLCHAIN_PREFIX=arm-linux-androideabi-
