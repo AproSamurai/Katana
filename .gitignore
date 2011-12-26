@@ -3,6 +3,7 @@
 *.lzma
 *.ko
 *.o
+*.o.d
 *.order
 Kernel/.config
 Kernel/.missing-syscalls.d
