@@ -139,6 +139,8 @@ struct wm8994_priv {
 	unsigned int  stream_state;
 	enum audio_path cur_path;
 	enum mic_path rec_path;
+	enum fmradio_path fmradio_path;
+	enum fmradio_mix_path fmr_mix_path;
 	enum power_state power_state;
 	enum input_source_state input_source;
 	enum ringtone_state ringtone_active;

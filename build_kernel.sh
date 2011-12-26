@@ -51,7 +51,7 @@ TARGET_LOCALE="vzw"
 #export KBUILD_BUILD_VERSION=""
 DEFCONFIG_STRING=cyanogenmod_epicmtd_defconfig
 
-TOOLCHAIN=../../../../prebuilt/linux-x86/toolchain/arm-eabi-4.4.3/bin
+TOOLCHAIN=/Users/shareef/Desktop/eppicmtd/android/system/prebuilt/darwin-x86/toolchain/arm-eabi-4.4.3/bin 
 TOOLCHAIN_PREFIX=arm-eabi-
 
 KERNEL_BUILD_DIR=`pwd`/Kernel
