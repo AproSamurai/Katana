@@ -48,11 +48,9 @@ fi
 TARGET_LOCALE="vzw"
 
 #uncomment to add custom version string
-#export KBUILD_BUILD_VERSION="nubernel-EC05_v0.0.0"
+#export KBUILD_BUILD_VERSION=""
 DEFCONFIG_STRING=cyanogenmod_epicmtd_defconfig
 
-#TOOLCHAIN=`pwd`/toolchains/android-toolchain-4.4.3/bin
-#TOOLCHAIN_PREFIX=arm-linux-androideabi-
 TOOLCHAIN=../../../../prebuilt/linux-x86/toolchain/arm-eabi-4.4.3/bin
 TOOLCHAIN_PREFIX=arm-eabi-
 
