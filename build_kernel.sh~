@@ -108,7 +108,7 @@ BUILD_KERNEL()
 		make ARCH=arm $DEFCONFIG_STRING
 		make -j$CPU_JOB_NUM ARCH=arm CROSS_COMPILE=$TOOLCHAIN/$TOOLCHAIN_PREFIX 2>&1 | tee make.out
 #		make V=1 -j$CPU_JOB_NUM ARCH=arm CROSS_COMPILE=$TOOLCHAIN/$TOOLCHAIN_PREFIX 2>&1 | tee make.out
-		cp arch/arm/boot/zImage /home/steven/Android/create_boot.img/
+		cp arch/arm/boot/zImage /home/steven/android/system/device/samsung/epicmtd/kernel
 	popd
 }
 
