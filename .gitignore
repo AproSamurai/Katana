@@ -3,6 +3,7 @@
 *.lzma
 *.ko
 *.o
+*.o.d
 *.order
 Kernel/.config
 Kernel/.missing-syscalls.d
@@ -72,3 +73,5 @@ Kernel/make.out
 Kernel/vmlinux
 
 .DS_Store
+
+Kernel/make.clean.out

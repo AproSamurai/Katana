@@ -85,7 +85,11 @@ CONFIG_SCHED_AUTOGROUP=y
 # CONFIG_RELAY is not set
 # CONFIG_NAMESPACES is not set
 CONFIG_BLK_DEV_INITRD=y
+<<<<<<< HEAD
 CONFIG_INITRAMFS_SOURCE="/home/steven/Android/create_boot.img/initramfs_stage1"
+=======
+CONFIG_INITRAMFS_SOURCE="usr/epicmtd_initramfs"
+>>>>>>> a8aaad17cae8064074563ad1b09d6342b0f7ff58
 CONFIG_INITRAMFS_ROOT_UID=0
 CONFIG_INITRAMFS_ROOT_GID=0
 CONFIG_RD_GZIP=y
