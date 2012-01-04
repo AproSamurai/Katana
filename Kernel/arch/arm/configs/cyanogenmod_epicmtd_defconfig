@@ -1078,8 +1078,8 @@ CONFIG_WLAN=y
 CONFIG_WIMAX_VICTORY=m
 CONFIG_WIMAX_GPIO_VICTORY=m
 CONFIG_BCM4329=m
-CONFIG_BCM4329_FW_PATH="/system/etc/firmware/fw_bcm4329.bin"
-CONFIG_BCM4329_NVRAM_PATH="/proc/calibration"
+CONFIG_BCM4329_FW_PATH="/system/vendor/firmware/fw_bcm4329.bin"
+CONFIG_BCM4329_NVRAM_PATH="/system/etc/wifi/nvram_net.txt"
 # CONFIG_HOSTAP is not set
 
 #
