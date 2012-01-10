@@ -1,0 +1,156 @@
+make  
+************************************************************
+* EXPORT VARIABLE                                          *
+************************************************************
+PRJROOT=/home/steven/Android/Katana
+PROJECT_NAME=SPH-D700
+HW_BOARD_REV=03
+LD_LIBRARY_PATH=.:/../lib
+************************************************************
+
+************************************************************
+* MAKE PACKAGES                                            *
+************************************************************
+* 1. kernel : zImage
+* 2. modules
+************************************************************
+************************************************************
+* Removing old zImage                                      *
+************************************************************
+* zImage removed
+************************************************************
+
+************************************************************
+* BUILD_KERNEL                                             *
+************************************************************
+
+~/Android/Katana/Kernel ~/Android/Katana
+arch/arm/configs/cyanogenmod_epicmtd_defconfig:4:warning: unexpected data
+arch/arm/configs/cyanogenmod_epicmtd_defconfig:6:warning: unexpected data
+arch/arm/configs/cyanogenmod_epicmtd_defconfig:8:warning: unexpected data
+arch/arm/configs/cyanogenmod_epicmtd_defconfig:824:warning: unexpected data
+arch/arm/configs/cyanogenmod_epicmtd_defconfig:827:warning: unexpected data
+arch/arm/configs/cyanogenmod_epicmtd_defconfig:828:warning: override: reassigning to symbol BT_BNEP_MC_FILTER
+arch/arm/configs/cyanogenmod_epicmtd_defconfig:829:warning: override: reassigning to symbol BT_BNEP_PROTO_FILTER
+arch/arm/configs/cyanogenmod_epicmtd_defconfig:830:warning: unexpected data
+#
+# configuration written to .config
+#
+scripts/kconfig/conf -s arch/arm/Kconfig
+  CHK     include/linux/version.h
+  CHK     include/generated/kernelversion.h
+  CHK     include/generated/utsrelease.h
+  UPD     include/generated/utsrelease.h
+make[1]: `include/generated/mach-types.h' is up to date.
+  CALL    scripts/checksyscalls.sh
+  CHK     include/generated/compile.h
+  CC      init/version.o
+  CC      arch/arm/mach-s5pv210/aries-panel.o
+arch/arm/mach-s5pv210/aries-panel.c:72:36: warning: "CONFIG_MACH_FORTE" is not defined
+  LD      arch/arm/mach-s5pv210/built-in.o
+  CC      kernel/module.o
+  LD      init/built-in.o
+  CC      kernel/kexec.o
+  LD      kernel/built-in.o
+  CC [M]  drivers/net/wireless/bcm4329/dhd_linux.o
+  CC [M]  drivers/net/wireless/bcm4329/linux_osl.o
+  CC [M]  drivers/net/wireless/bcm4329/bcmutils.o
+  CC      drivers/video/samsung/s3cfb_tl2796.o
+  CC [M]  drivers/net/wireless/bcm4329/dhd_common.o
+  CC [M]  drivers/net/wireless/bcm4329/dhd_custom_gpio.o
+  CC      drivers/video/samsung/s3cfb_mdnie.o
+  CC [M]  drivers/net/wireless/bcm4329/wl_iw.o
+  CC [M]  drivers/net/wireless/bcm4329/siutils.o
+In file included from drivers/video/samsung/s3cfb_mdnie.c:95:
+drivers/video/samsung/s3cfb_mdnie_value.h:210: warning: missing braces around initializer
+drivers/video/samsung/s3cfb_mdnie_value.h:210: warning: (near initialization for 'mDNIe_Video[0]')
+drivers/video/samsung/s3cfb_mdnie_value.h:246: warning: missing braces around initializer
+drivers/video/samsung/s3cfb_mdnie_value.h:246: warning: (near initialization for 'mDNIe_Camera[0]')
+drivers/video/samsung/s3cfb_mdnie_value.h:263: warning: missing braces around initializer
+drivers/video/samsung/s3cfb_mdnie_value.h:263: warning: (near initialization for 'mDNIe_Camera_Outdoor_Mode[0]')
+drivers/video/samsung/s3cfb_mdnie_value.h:288: warning: missing braces around initializer
+drivers/video/samsung/s3cfb_mdnie_value.h:288: warning: (near initialization for 'mDNIe_UI[0]')
+drivers/video/samsung/s3cfb_mdnie_value.h:322: warning: missing braces around initializer
+drivers/video/samsung/s3cfb_mdnie_value.h:322: warning: (near initialization for 'mDNIe_Video_Warm[0]')
+drivers/video/samsung/s3cfb_mdnie_value.h:338: warning: missing braces around initializer
+drivers/video/samsung/s3cfb_mdnie_value.h:338: warning: (near initialization for 'mDNIe_Video_WO_Mode[0]')
+drivers/video/samsung/s3cfb_mdnie_value.h:369: warning: missing braces around initializer
+drivers/video/samsung/s3cfb_mdnie_value.h:369: warning: (near initialization for 'mDNIe_Video_Cold[0]')
+drivers/video/samsung/s3cfb_mdnie_value.h:385: warning: missing braces around initializer
+drivers/video/samsung/s3cfb_mdnie_value.h:385: warning: (near initialization for 'mDNIe_Video_CO_Mode[0]')
+drivers/video/samsung/s3cfb_mdnie_value.h:401: warning: missing braces around initializer
+drivers/video/samsung/s3cfb_mdnie_value.h:401: warning: (near initialization for 'mDNIe_Outdoor_Mode[0]')
+drivers/video/samsung/s3cfb_mdnie.c: In function 'mdnieset_ui_file_cmd_show':
+drivers/video/samsung/s3cfb_mdnie.c:556: warning: ISO C90 forbids mixed declarations and code
+  LD      drivers/video/samsung/built-in.o
+  CC [M]  drivers/net/wireless/bcm4329/sbutils.o
+  LD      drivers/video/built-in.o
+  CC [M]  drivers/net/wireless/bcm4329/aiutils.o
+  CC [M]  drivers/net/wireless/bcm4329/hndpmu.o
+  CC [M]  drivers/net/wireless/bcm4329/bcmwifi.o
+  CC [M]  drivers/net/wireless/bcm4329/dhd_sdio.o
+  CC [M]  drivers/net/wireless/bcm4329/dhd_linux_sched.o
+  CC [M]  drivers/net/wireless/bcm4329/dhd_cdc.o
+  CC [M]  drivers/net/wireless/bcm4329/bcmsdh_sdmmc.o
+  CC [M]  drivers/net/wireless/bcm4329/bcmsdh.o
+  CC [M]  drivers/net/wireless/bcm4329/bcmsdh_linux.o
+  CC [M]  drivers/net/wireless/bcm4329/bcmsdh_sdmmc_linux.o
+  LD [M]  drivers/net/wireless/bcm4329/bcm4329.o
+  LD      drivers/built-in.o
+  LD      vmlinux.o
+  MODPOST vmlinux.o
+WARNING: modpost: Found 11 section mismatch(es).
+To see full details build your kernel with:
+'make CONFIG_DEBUG_SECTION_MISMATCH=y'
+  GEN     .version
+  CHK     include/generated/compile.h
+  UPD     include/generated/compile.h
+  CC      init/version.o
+  LD      init/built-in.o
+  LD      .tmp_vmlinux1
+  KSYM    .tmp_kallsyms1.S
+  AS      .tmp_kallsyms1.o
+  LD      .tmp_vmlinux2
+  KSYM    .tmp_kallsyms2.S
+  AS      .tmp_kallsyms2.o
+  LD      vmlinux
+  SYSMAP  System.map
+  SYSMAP  .tmp_System.map
+  Building modules, stage 2.
+  OBJCOPY arch/arm/boot/Image
+  MODPOST 3 modules
+  Kernel: arch/arm/boot/Image is ready
+  GZIP    arch/arm/boot/compressed/piggy.gzip
+  SHIPPED arch/arm/boot/compressed/lib1funcs.S
+  AS      arch/arm/boot/compressed/lib1funcs.o
+  CC      drivers/misc/vibetonz/vibrator.mod.o
+  CC      drivers/net/wireless/bcm4329/bcm4329.mod.o
+  CC      drivers/net/wireless/wimax/cmc7xx_sdio.mod.o
+  LD [M]  drivers/misc/vibetonz/vibrator.ko
+  LD [M]  drivers/net/wireless/wimax/cmc7xx_sdio.ko
+  LD [M]  drivers/net/wireless/bcm4329/bcm4329.ko
+  AS      arch/arm/boot/compressed/piggy.gzip.o
+  LD      arch/arm/boot/compressed/vmlinux
+  OBJCOPY arch/arm/boot/zImage
+  Kernel: arch/arm/boot/zImage is ready
+./build_kernel.sh: line 141: =======: command not found
+make: /arm-eabi-gcc: Command not found
+  CHK     include/linux/version.h
+  CHK     include/generated/kernelversion.h
+  CC      scripts/mod/empty.o
+/bin/sh: /arm-eabi-gcc: No such file or directory
+make[2]: *** [scripts/mod/empty.o] Error 1
+make[2]: *** Waiting for unfinished jobs....
+make[1]: *** [scripts/mod] Error 2
+make: *** [scripts] Error 2
+make: *** Waiting for unfinished jobs....
+Copying zImage to /kernel
+cp: cannot create regular file `/kernel': Permission denied
+Copying ./drivers/net/wireless/bcm4329/bcm4329.ko to /modules/
+cp: cannot create regular file `/modules/': Is a directory
+Copying ./drivers/net/wireless/wimax/cmc7xx_sdio.ko to /modules/
+cp: cannot create regular file `/modules/': Is a directory
+Copying ./drivers/misc/vibetonz/vibrator.ko to /modules/
+cp: cannot create regular file `/modules/': Is a directory
+~/Android/Katana
+Total compile time is 141 seconds

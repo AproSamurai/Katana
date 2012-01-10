@@ -10,6 +10,8 @@
 #define _WM8994_H
 
 #include <sound/soc.h>
+#include "wm8994_voodoo.h"
+
 
 extern struct snd_soc_codec_device soc_codec_dev_wm8994;
 // We don't use array	- DW Shim.

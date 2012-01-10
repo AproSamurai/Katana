@@ -51,7 +51,11 @@ snd-soc-wm8988-objs := wm8988.o
 snd-soc-wm8990-objs := wm8990.o
 snd-soc-wm8993-objs := wm8993.o
 ifeq ($(CONFIG_SND_SOC_WM8994_VICTORY),y)
-snd-soc-wm8994-objs := wm8994_samsung.o wm8994_aries.o
+ifeq ($(CONFIG_SND_VOODOO),y)
+snd-soc-wm8994-objs := wm8994.o wm8994_aries.o wm8994_voodoo.o
+else
+snd-soc-wm8994-objs := wm8994.o wm8994_aries.o
+endif
 endif
 ifeq ($(CONFIG_SND_SOC_WM8994_ATLAS),y)
 ifeq ($(CONFIG_S5PV210_GARNETT_DELTA),y)
