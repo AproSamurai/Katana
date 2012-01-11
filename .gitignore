@@ -33,6 +33,7 @@ Kernel/drivers/misc/vibetonz/vibrator.mod.c
 Kernel/drivers/net/tun.mod.c
 Kernel/drivers/net/wireless/bcm4329/victory/dhd.mod.c
 Kernel/drivers/net/wireless/bcm4329/victory/src/wl/sys/hotspot_event_monitoring.mod.c
+Kernel/drivers/net/wireless/bcm4329/bcm4329.mod.c
 Kernel/drivers/net/wireless/wimax/cmc7xx_sdio.mod.c
 Kernel/drivers/net/wireless/wimaxgpio/wimax_gpio.mod.c
 Kernel/drivers/onedram/dpram/dpram.mod.c
