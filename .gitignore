@@ -6,6 +6,7 @@
 *.o.d
 *.order
 Kernel/.config
+Kernel/.config.old
 Kernel/.missing-syscalls.d
 Kernel/.tmp_System.map
 Kernel/.tmp_kallsyms1.S
@@ -62,6 +63,7 @@ Kernel/scripts/conmakehash
 Kernel/scripts/kallsyms
 Kernel/scripts/kconfig/conf
 Kernel/scripts/kconfig/lex.zconf.c
+Kernel/scripts/kconfig/mconf
 Kernel/scripts/kconfig/zconf.hash.c
 Kernel/scripts/kconfig/zconf.tab.c
 Kernel/scripts/mod/elfconfig.h
