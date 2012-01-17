@@ -147,15 +147,39 @@ struct wifi_mem_prealloc {
 	unsigned long size;
 };
 
+/* REC_BOOT_MAGIC is poked into REC_BOOT_ADDR on reboot(..., "recovery") to
+ * flag stage1 init to load the recovery image.  This address is located in
+ * the last 4 kB of unmapped RAM, shared with the kexec hardboot page and
+ * pmstats. */
+#ifdef CONFIG_POKE_REC_BOOT_MAGIC
+#define REC_BOOT_ADDR  0x57fff800
+#define REC_BOOT_MAGIC 0x5EC0B007
+
+static void poke_rec_boot_magic(void)
+{
+	unsigned int __iomem *rec_boot_mem;
+
+	if ((rec_boot_mem = ioremap(REC_BOOT_ADDR, sizeof(*rec_boot_mem))) == NULL)
+		/* Can't do much about this. */
+		return;
+
+	writel(REC_BOOT_MAGIC, rec_boot_mem);
+	iounmap(rec_boot_mem);
+}
+#endif
+
 static int victory_notifier_call(struct notifier_block *this,
 					unsigned long code, void *_cmd)
 {
 	int mode = REBOOT_MODE_NONE;
 
 	if ((code == SYS_RESTART) && _cmd) {
-		if (!strcmp((char *)_cmd, "recovery"))
+		if (!strcmp((char *)_cmd, "recovery")) {
 			mode = REBOOT_MODE_ARM11_FOTA;
-		else if (!strcmp((char *)_cmd, "arm9_fota"))
+#ifdef CONFIG_POKE_REC_BOOT_MAGIC
+			poke_rec_boot_magic();
+#endif
+		} else if (!strcmp((char *)_cmd, "arm9_fota"))
 			mode = REBOOT_MODE_ARM9_FOTA;
 		else if (!strcmp((char *)_cmd, "bml7recovery"))
 			mode = REBOOT_MODE_RECOVERY;
@@ -345,7 +369,10 @@ static struct s3cfb_lcd nt35580 = {
 #define  S5PV210_VIDEO_SAMSUNG_MEMSIZE_FIMC2 (12288 * SZ_1K)
 #define  S5PV210_VIDEO_SAMSUNG_MEMSIZE_MFC0 (13312 * SZ_1K) // 13MB
 #define  S5PV210_VIDEO_SAMSUNG_MEMSIZE_MFC1 (21504 * SZ_1K) // 21MB
-#define  S5PV210_VIDEO_SAMSUNG_MEMSIZE_FIMD (3072 * SZ_1K)
+#define  S5PV210_VIDEO_SAMSUNG_MEMSIZE_FIMD (800 * 480 * 4 * \
+		(CONFIG_FB_S3C_NR_BUFFERS + \
+		(CONFIG_FB_S3C_NUM_OVLY_WIN * \
+		 CONFIG_FB_S3C_NUM_BUF_OVLY_WIN)))
 #define  S5PV210_VIDEO_SAMSUNG_MEMSIZE_JPEG (5012 * SZ_1K)
 #define  S5PV210_VIDEO_SAMSUNG_MEMSIZE_PMEM (5550 * SZ_1K)
 #define  S5PV210_VIDEO_SAMSUNG_MEMSIZE_GPU1 (3300 * SZ_1K)

@@ -1,4 +1,64 @@
 #!/bin/bash
+#
+# This script builds the CM kernel and copies it to the Epic MTD device tree.
+# You must specify the path to your device tree.
+#
+#   export EPICMTDCM7PATH=/path/to/your/cm7repo >> ~/.bashrc
+#   export EPICMTDCM9PATH=/path/to/your/cm9repo >> ~/.bashrc
+#
+
+#uncomment to add custom version string
+#export KBUILD_BUILD_VERSION=""
+DEFCONFIG_STRING=cyanogenmod_epicmtd_defconfig
+DEVICEPATH=device/samsung/epicmtd
+TOOLCHAINPATH=/toolchain/arm-eabi-4.4.3/bin
+
+# Shouldn't need to modify anything below here
+CMSEARCHPATH="../../.."
+unset CMBASEPATH
+[ -e ~/.bashrc ] && . ~/.bashrc
+
+# Detect kernel branch from git and use CM path from environment if it exists
+if git branch | grep -q ^\*.*gingerbread; then
+    CMVER=7
+    [ -n "$EPICMTDCM7PATH" ] && CMSEARCHPATH="$EPICMTDCM7PATH $CMSEARCHPATH"
+elif git branch | grep ^\*.*ICS; then
+    CMVER=9
+    [ -n "$EPICMTDCM9PATH" ] && CMSEARCHPATH="$EPICMTDCM9PATH $CMSEARCHPATH"
+fi
+
+# Detect host OS
+case "`uname`" in 
+    Linux)
+        PREBUILTARCH=linux-x86
+        ;;
+    Darwin)
+        PREBUILTARCH=darwin-x86
+        ;;
+esac
+
+# Find CM path for toolchain and target for kernel output
+for p in $CMSEARCHPATH; do
+    echo "Checking $p/prebuilt/$PREBUILTARCH/$TCPATH"
+    if [ -d $p/prebuilt/$PREBUILTARCH/$TCPATH ]; then
+        cd $p
+        CMBASEPATH=`pwd`
+        cd -
+        TCPATH=${CMBASEPATH}/prebuilt/$PREBUILTARCH/$TOOLCHAINPATH
+        DPATH=${CMBASEPATH}/${DEVICEPATH}
+        break
+    fi
+done    
+
+# Sanity Check
+if [ -z "$CMBASEPATH" ]; then
+    echo "ERROR: Base CM path not specified.  You should probably set it in your ~/.bashrc."
+    echo "    Example:"
+    echo "    echo \"export EPICMTDCM${CMVER}PATH=/path/to/your/cmrepo\" >> ~/.bashrc"
+    exit 255
+fi
+
+# Display Environment
 
 echo "$1 $2 $3"
 
@@ -8,7 +68,7 @@ case "$1" in
 		echo "* Clean Kernel                                             *"
 		echo "************************************************************"
 		pushd Kernel
-			make clean V=1 ARCH=arm CROSS_COMPILE=$TOOLCHAIN/$TOOLCHAIN_PREFIX 2>&1 | tee make.clean.out
+			make clean V=1 ARCH=arm CROSS_COMPILE=$TCPATH/$TOOLCHAIN_PREFIX 2>&1 | tee make.clean.out
 		popd
 		echo " Clean is done... "
 		exit
@@ -18,7 +78,7 @@ case "$1" in
 		echo "* mrproper Kernel                                          *"
 		echo "************************************************************"
 		pushd Kernel
-			make clean V=1 ARCH=arm CROSS_COMPILE=$TOOLCHAIN/$TOOLCHAIN_PREFIX 2>&1 | tee make.clean.out
+			make clean V=1 ARCH=arm CROSS_COMPILE=$TCPATH/$TOOLCHAIN_PREFIX 2>&1 | tee make.clean.out
 			make mrproper 2>&1 | tee make.mrproper.out
 		popd
 		echo " mrproper is done... "
@@ -29,7 +89,7 @@ case "$1" in
 		echo "* distclean Kernel                                         *"
 		echo "************************************************************"
 		pushd Kernel
-			make clean V=1 ARCH=arm CROSS_COMPILE=$TOOLCHAIN/$TOOLCHAIN_PREFIX 2>&1 | tee make.clean.out
+			make clean V=1 ARCH=arm CROSS_COMPILE=$TCPATH/$TOOLCHAIN_PREFIX 2>&1 | tee make.clean.out
 			make distclean 2>&1 | tee make.distclean.out
 		popd
 		echo " distclean is done... "
@@ -47,6 +107,7 @@ fi
 
 TARGET_LOCALE="vzw"
 
+<<<<<<< HEAD
 #uncomment to add custom version string
 #export KBUILD_BUILD_VERSION="nubernel-EC05_v0.0.0"
 DEFCONFIG_STRING=cyanogenmod_epicmtd_defconfig
@@ -54,16 +115,17 @@ DEFCONFIG_STRING=cyanogenmod_epicmtd_defconfig
 #TOOLCHAIN=`pwd`/toolchains/android-toolchain-4.4.3/bin
 #TOOLCHAIN_PREFIX=arm-linux-androideabi-
 TOOLCHAIN=/home/steven/Android/android_prebuilt/linux-x86/toolchain/arm-eabi-4.4.3/bin
+=======
+>>>>>>> 6655a76cc0c4d6844d7214b424287136ccd618aa
 TOOLCHAIN_PREFIX=arm-eabi-
 
 KERNEL_BUILD_DIR=`pwd`/Kernel
-ANDROID_OUT_DIR=`pwd`/Android/out/target/product/SPH-D700
 
 export PRJROOT=$PWD
 export PROJECT_NAME
 export HW_BOARD_REV
 
-export LD_LIBRARY_PATH=.:${TOOLCHAIN}/../lib
+export LD_LIBRARY_PATH=.:${TCPATH}/../lib
 
 echo "************************************************************"
 echo "* EXPORT VARIABLE                                          *"
@@ -104,11 +166,23 @@ BUILD_KERNEL()
 	echo
 	pushd $KERNEL_BUILD_DIR
 		export KDIR=`pwd`
-		make clean mrproper
+		#make clean mrproper
 		make ARCH=arm $DEFCONFIG_STRING
+<<<<<<< HEAD
 		make -j$CPU_JOB_NUM ARCH=arm CROSS_COMPILE=$TOOLCHAIN/$TOOLCHAIN_PREFIX 2>&1 | tee make.out
 #		make V=1 -j$CPU_JOB_NUM ARCH=arm CROSS_COMPILE=$TOOLCHAIN/$TOOLCHAIN_PREFIX 2>&1 | tee make.out
 		cp arch/arm/boot/zImage /home/steven/Android/create_boot.img/
+=======
+		make -j$CPU_JOB_NUM ARCH=arm CROSS_COMPILE=$TCPATH/$TOOLCHAIN_PREFIX 2>&1 | tee make.out
+#		make V=1 -j$CPU_JOB_NUM ARCH=arm CROSS_COMPILE=$TCPATH/$TOOLCHAIN_PREFIX 2>&1 | tee make.out
+                echo "Copying zImage to $DPATH/kernel"
+		cp arch/arm/boot/zImage $DPATH/kernel
+                rm -f $DPATH/modules/*.ko
+                for kmod in `find -name '*.ko'`; do
+                    echo "Copying $kmod to $DPATH/modules/"
+                    cp $kmod $DPATH/modules/
+                done
+>>>>>>> 6655a76cc0c4d6844d7214b424287136ccd618aa
 	popd
 }
 
