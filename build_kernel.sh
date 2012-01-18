@@ -13,19 +13,7 @@ DEFCONFIG_STRING=cyanogenmod_epicmtd_defconfig
 DEVICEPATH=device/samsung/epicmtd
 TOOLCHAINPATH=/toolchain/arm-eabi-4.4.3/bin
 
-# Shouldn't need to modify anything below here
-CMSEARCHPATH="../../.."
-unset CMBASEPATH
-[ -e ~/.bashrc ] && . ~/.bashrc
 
-# Detect kernel branch from git and use CM path from environment if it exists
-if git branch | grep -q ^\*.*gingerbread; then
-    CMVER=7
-    [ -n "$EPICMTDCM7PATH" ] && CMSEARCHPATH="$EPICMTDCM7PATH $CMSEARCHPATH"
-elif git branch | grep ^\*.*ICS; then
-    CMVER=9
-    [ -n "$EPICMTDCM9PATH" ] && CMSEARCHPATH="$EPICMTDCM9PATH $CMSEARCHPATH"
-fi
 
 # Detect host OS
 case "`uname`" in 
@@ -37,26 +25,6 @@ case "`uname`" in
         ;;
 esac
 
-# Find CM path for toolchain and target for kernel output
-for p in $CMSEARCHPATH; do
-    echo "Checking $p/prebuilt/$PREBUILTARCH/$TCPATH"
-    if [ -d $p/prebuilt/$PREBUILTARCH/$TCPATH ]; then
-        cd $p
-        CMBASEPATH=`pwd`
-        cd -
-        TCPATH=${CMBASEPATH}/prebuilt/$PREBUILTARCH/$TOOLCHAINPATH
-        DPATH=${CMBASEPATH}/${DEVICEPATH}
-        break
-    fi
-done    
-
-# Sanity Check
-if [ -z "$CMBASEPATH" ]; then
-    echo "ERROR: Base CM path not specified.  You should probably set it in your ~/.bashrc."
-    echo "    Example:"
-    echo "    echo \"export EPICMTDCM${CMVER}PATH=/path/to/your/cmrepo\" >> ~/.bashrc"
-    exit 255
-fi
 
 # Display Environment
 
@@ -107,7 +75,7 @@ fi
 
 TARGET_LOCALE="vzw"
 
-<<<<<<< HEAD
+
 #uncomment to add custom version string
 #export KBUILD_BUILD_VERSION="nubernel-EC05_v0.0.0"
 DEFCONFIG_STRING=cyanogenmod_epicmtd_defconfig
@@ -115,8 +83,6 @@ DEFCONFIG_STRING=cyanogenmod_epicmtd_defconfig
 #TOOLCHAIN=`pwd`/toolchains/android-toolchain-4.4.3/bin
 #TOOLCHAIN_PREFIX=arm-linux-androideabi-
 TOOLCHAIN=/home/steven/Android/android_prebuilt/linux-x86/toolchain/arm-eabi-4.4.3/bin
-=======
->>>>>>> 6655a76cc0c4d6844d7214b424287136ccd618aa
 TOOLCHAIN_PREFIX=arm-eabi-
 
 KERNEL_BUILD_DIR=`pwd`/Kernel
@@ -168,7 +134,7 @@ BUILD_KERNEL()
 		export KDIR=`pwd`
 		#make clean mrproper
 		make ARCH=arm $DEFCONFIG_STRING
-<<<<<<< HEAD
+
 		make -j$CPU_JOB_NUM ARCH=arm CROSS_COMPILE=$TOOLCHAIN/$TOOLCHAIN_PREFIX 2>&1 | tee make.out
 #		make V=1 -j$CPU_JOB_NUM ARCH=arm CROSS_COMPILE=$TOOLCHAIN/$TOOLCHAIN_PREFIX 2>&1 | tee make.out
 		cp arch/arm/boot/zImage /home/steven/Android/create_boot.img/
@@ -182,7 +148,7 @@ BUILD_KERNEL()
                     echo "Copying $kmod to $DPATH/modules/"
                     cp $kmod $DPATH/modules/
                 done
->>>>>>> 6655a76cc0c4d6844d7214b424287136ccd618aa
+
 	popd
 }
 
