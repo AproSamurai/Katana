@@ -151,6 +151,10 @@ struct wifi_mem_prealloc {
  * flag stage1 init to load the recovery image.  This address is located in
  * the last 4 kB of unmapped RAM, shared with the kexec hardboot page and
  * pmstats. */
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_POKE_REC_BOOT_MAGIC
+>>>>>>> c31656f239a1f377ddbc624af8f66c740eb5a02c
 #define REC_BOOT_ADDR  0x57fff800
 #define REC_BOOT_MAGIC 0x5EC0B007
 
@@ -165,6 +169,10 @@ static void poke_rec_boot_magic(void)
 	writel(REC_BOOT_MAGIC, rec_boot_mem);
 	iounmap(rec_boot_mem);
 }
+<<<<<<< HEAD
+=======
+#endif
+>>>>>>> c31656f239a1f377ddbc624af8f66c740eb5a02c
 
 static int victory_notifier_call(struct notifier_block *this,
 					unsigned long code, void *_cmd)
@@ -172,9 +180,18 @@ static int victory_notifier_call(struct notifier_block *this,
 	int mode = REBOOT_MODE_NONE;
 
 	if ((code == SYS_RESTART) && _cmd) {
+<<<<<<< HEAD
 		if (!strcmp((char *)_cmd, "recovery"))
 			poke_rec_boot_magic();
 		else if (!strcmp((char *)_cmd, "arm9_fota"))
+=======
+		if (!strcmp((char *)_cmd, "recovery")) {
+			mode = REBOOT_MODE_ARM11_FOTA;
+#ifdef CONFIG_POKE_REC_BOOT_MAGIC
+			poke_rec_boot_magic();
+#endif
+		} else if (!strcmp((char *)_cmd, "arm9_fota"))
+>>>>>>> c31656f239a1f377ddbc624af8f66c740eb5a02c
 			mode = REBOOT_MODE_ARM9_FOTA;
 		else if (!strcmp((char *)_cmd, "bml7recovery"))
 			mode = REBOOT_MODE_RECOVERY;
