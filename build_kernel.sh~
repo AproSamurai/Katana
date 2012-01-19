@@ -148,7 +148,7 @@ BUILD_KERNEL()
                     echo "Copying $kmod to $DPATH/modules/"
                     cp $kmod $DPATH/modules/
                 done
->>>>>>> 6655a76cc0c4d6844d7214b424287136ccd618aa
+
 	popd
 }
 
