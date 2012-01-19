@@ -2568,10 +2568,9 @@ void TSP_forced_release(void)
 
         input_report_abs(qt602240->input_dev, ABS_MT_POSITION_X, fingerInfo[i].x);
         input_report_abs(qt602240->input_dev, ABS_MT_POSITION_Y, fingerInfo[i].y);
-        input_report_abs(qt602240->input_dev, ABS_MT_PRESSURE, fingerInfo[i].pressure);    // 0̸ Release, ƴϸ Press (Down or Move)
+        input_report_abs(qt602240->input_dev, ABS_MT_TOUCH_MAJOR, fingerInfo[i].pressure);    // 0̸ Release, ƴϸ Press (Down or Move)
 	input_report_abs(qt602240->input_dev, ABS_MT_WIDTH_MAJOR, fingerInfo[i].size);    // (ID<<8) | Size
 	input_report_abs(qt602240->input_dev, ABS_MT_TRACKING_ID, i); // i = Finger ID
-        input_report_key(qt602240->input_dev, BTN_TOUCH, fingerInfo[i].pressure != 0);
         input_mt_sync(qt602240->input_dev);
 
         if ( fingerInfo[i].pressure == 0 ) fingerInfo[i].pressure= -1;
@@ -2597,10 +2596,9 @@ void TSP_forced_release_forOKkey(void)
 
         input_report_abs(qt602240->input_dev, ABS_MT_POSITION_X, fingerInfo[i].x);
         input_report_abs(qt602240->input_dev, ABS_MT_POSITION_Y, fingerInfo[i].y);
-        input_report_abs(qt602240->input_dev, ABS_MT_PRESSURE, fingerInfo[i].pressure);    // 0̸ Release, ƴϸ Press (Down or Move)
+        input_report_abs(qt602240->input_dev, ABS_MT_TOUCH_MAJOR, fingerInfo[i].pressure);    // 0̸ Release, ƴϸ Press (Down or Move)
         input_report_abs(qt602240->input_dev, ABS_MT_WIDTH_MAJOR, fingerInfo[i].size);    // (ID<<8) | Size
 	input_report_abs(qt602240->input_dev, ABS_MT_TRACKING_ID, i); // i = Finger ID
-        input_report_key(qt602240->input_dev, BTN_TOUCH, fingerInfo[i].pressure != 0);
         input_mt_sync(qt602240->input_dev);
 
         if ( fingerInfo[i].pressure == 0 ) fingerInfo[i].pressure= -1;
@@ -2701,10 +2699,9 @@ static void _input_report_finger_info(struct i2c_ts_driver * pTsDriver, report_f
         case 1: // event from main screen
           input_report_abs(qt602240->input_dev, ABS_MT_POSITION_X, x);
           input_report_abs(qt602240->input_dev, ABS_MT_POSITION_Y, y);
-          input_report_abs(qt602240->input_dev, ABS_MT_PRESSURE, status);
+          input_report_abs(qt602240->input_dev, ABS_MT_TOUCH_MAJOR, status);
           input_report_abs(qt602240->input_dev, ABS_MT_WIDTH_MAJOR, pFingerInfo->size);
 	  input_report_abs(qt602240->input_dev, ABS_MT_TRACKING_ID, track_id); // i = Finger ID   	
-          input_report_key(qt602240->input_dev, BTN_TOUCH, status != 0);
           input_mt_sync(qt602240->input_dev);
           pFingerStatus->area = 1;
           break;
@@ -2724,10 +2721,9 @@ static void _input_report_finger_info(struct i2c_ts_driver * pTsDriver, report_f
 	 printk("ticker repoted\n");
           input_report_abs(qt602240->input_ticker_dev, ABS_MT_POSITION_X, x);
           input_report_abs(qt602240->input_ticker_dev, ABS_MT_POSITION_Y, y);
-          input_report_abs(qt602240->input_ticker_dev, ABS_MT_PRESSURE, status);
+          input_report_abs(qt602240->input_ticker_dev, ABS_MT_TOUCH_MAJOR, status);
           input_report_abs(qt602240->input_ticker_dev, ABS_MT_WIDTH_MAJOR, pFingerInfo->size);
 	  input_report_abs(qt602240->input_dev, ABS_MT_TRACKING_ID, track_id); // i = Finger ID
-          input_report_key(qt602240->input_ticker_dev, BTN_TOUCH, status != 0);
           input_mt_sync(qt602240->input_ticker_dev);
           pFingerStatus->area = 3;
           break;
@@ -2791,10 +2787,9 @@ void  get_message(void)
 			else {
                         	input_report_abs(qt602240->input_dev, ABS_MT_POSITION_X, fingerInfo[i].x);
 	                        input_report_abs(qt602240->input_dev, ABS_MT_POSITION_Y, fingerInfo[i].y);
-        	                input_report_abs(qt602240->input_dev, ABS_MT_PRESSURE, fingerInfo[i].pressure);    // 0̸ Release, ƴϸ Press (Down or Move)
+        	                input_report_abs(qt602240->input_dev, ABS_MT_TOUCH_MAJOR, fingerInfo[i].pressure);    // 0̸ Release, ƴϸ Press (Down or Move)
                                 input_report_abs(qt602240->input_dev, ABS_MT_WIDTH_MAJOR, fingerInfo[i].size);    // (ID<<8) | Size
 				input_report_abs(qt602240->input_dev, ABS_MT_TRACKING_ID, i); // i = Finger ID
-				input_report_key(qt602240->input_dev, BTN_TOUCH, fingerInfo[i].pressure != 0);
                         	input_mt_sync(qt602240->input_dev);
 			}
             
@@ -2946,10 +2941,9 @@ void  get_message(void)
 			else {
 		            input_report_abs(qt602240->input_dev, ABS_MT_POSITION_X, fingerInfo[i].x);
 	        	    input_report_abs(qt602240->input_dev, ABS_MT_POSITION_Y, fingerInfo[i].y);
-	 		    input_report_abs(qt602240->input_dev, ABS_MT_PRESSURE, fingerInfo[i].pressure);    // 0̸ Release, ƴϸ Press (Down or Move)
+	 		    input_report_abs(qt602240->input_dev, ABS_MT_TOUCH_MAJOR, fingerInfo[i].pressure);    // 0̸ Release, ƴϸ Press (Down or Move)
                             input_report_abs(qt602240->input_dev, ABS_MT_WIDTH_MAJOR, fingerInfo[i].size);    // (ID<<8) | Size
 			    input_report_abs(qt602240->input_dev, ABS_MT_TRACKING_ID, i); // i = Finger ID
-			    input_report_key(qt602240->input_dev, BTN_TOUCH, fingerInfo[i].pressure != 0);
 	        	    input_mt_sync(qt602240->input_dev);
 			}
 
@@ -3344,7 +3338,7 @@ int qt602240_probe(struct i2c_client *client,
     input_set_abs_params(qt602240->input_dev, ABS_PRESSURE, 0, 255, 0, 0);
     input_set_abs_params(qt602240->input_dev, ABS_TOOL_WIDTH, 0, 15, 0, 0);
 #ifdef _SUPPORT_MULTITOUCH_
-    input_set_abs_params(qt602240->input_dev, ABS_MT_PRESSURE, 0, 255, 0, 0);
+    input_set_abs_params(qt602240->input_dev, ABS_MT_TOUCH_MAJOR, 0, 255, 0, 0);
 
     if(qt602240->pdata->is_tickertab)
 	    input_set_abs_params(qt602240->input_dev, ABS_MT_WIDTH_MAJOR, 0, 15, 0, 0);
@@ -3376,7 +3370,7 @@ int qt602240_probe(struct i2c_client *client,
 #ifdef _SUPPORT_MULTITOUCH_
 	input_set_abs_params(qt602240->input_ticker_dev, ABS_MT_POSITION_X, 0, FULL_SCREEN_WIDTH, 0, 0);
 	input_set_abs_params(qt602240->input_ticker_dev, ABS_MT_POSITION_Y, 0, TICKER_SCREEN_HEIGHT, 0, 0);
-	input_set_abs_params(qt602240->input_ticker_dev, ABS_MT_PRESSURE, 0, 255, 0, 0);
+	input_set_abs_params(qt602240->input_ticker_dev, ABS_MT_TOUCH_MAJOR, 0, 255, 0, 0);
 	input_set_abs_params(qt602240->input_ticker_dev, ABS_MT_WIDTH_MAJOR, 0, 15, 0, 0);
 #endif
 	input_set_abs_params(qt602240->input_ticker_dev, ABS_PRESSURE, 0, 255, 0, 0);
