@@ -36,7 +36,7 @@
 #include <linux/sched.h>
 #include <linux/notifier.h>
 
-#define SEC_ADJUST_LMK
+// #define SEC_ADJUST_LMK
 
 static uint32_t lowmem_debug_level = 2;
 static int lowmem_adj[6] = {
