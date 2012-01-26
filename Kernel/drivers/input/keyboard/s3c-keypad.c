@@ -361,8 +361,8 @@ static irqreturn_t s3c_slide_isr(int irq, void *dev_id)
   key_status = (readl(S5PV210_GPJ1DAT)) & (1 << 4);
   }
 //hojun_kim ]  
-  printk("\nSlide status=%x\n", key_status);
-  input_report_switch(dev, SW_LID, key_status);//hojun_kim
+  printk("\nSlide status=%x\n", !key_status);
+  input_report_switch(dev, SW_LID,!key_status);//hojun_kim
   input_sync(dev); //hojun_kim
 
   //hojun_kim 100511[
@@ -696,7 +696,7 @@ static int __init s3c_keypad_probe(struct platform_device *pdev)
         }
 
  
-        input_report_switch(s3c_keypad->dev, SW_LID, 0); //hojun_kim
+        input_report_switch(s3c_keypad->dev, SW_LID, 1); //hojun_kim
         input_sync(s3c_keypad->dev); //hojun_kim
   // nandu froyo victory merge
         
