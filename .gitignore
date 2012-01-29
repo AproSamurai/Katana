@@ -5,6 +5,9 @@
 *.o
 *.o.d
 *.order
+tools/kexec-cwm-test-zip/META-INF/com/google/android/update-binary
+tools/kexec-cwm-test-zip/zImage
+boot_zImage.zip
 Kernel/.config
 Kernel/.config.old
 Kernel/.missing-syscalls.d
