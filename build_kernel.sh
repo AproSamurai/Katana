@@ -9,7 +9,7 @@
 
 #uncomment to add custom version string
 #export KBUILD_BUILD_VERSION=""
-DEFCONFIG_STRING=cyanogenmod_epicmtd_defconfig
+DEFCONFIG_STRING=Shuriken_defconfig
 DEVICEPATH=device/samsung/epicmtd
 TOOLCHAINPATH=/toolchain/arm-eabi-4.4.3/bin
 
@@ -78,7 +78,10 @@ TARGET_LOCALE="vzw"
 
 #uncomment to add custom version string
 #export KBUILD_BUILD_VERSION="nubernel-EC05_v0.0.0"
-DEFCONFIG_STRING=cyanogenmod_epicmtd_defconfig
+DEFCONFIG_STRING=Shuriken_defconfig
+
+#LOCALVERSION
+LOCALVERSION="Shuriken-2.0"
 
 #TOOLCHAIN=`pwd`/toolchains/android-toolchain-4.4.3/bin
 #TOOLCHAIN_PREFIX=arm-linux-androideabi-
@@ -138,7 +141,7 @@ BUILD_KERNEL()
 		make -j$CPU_JOB_NUM ARCH=arm CROSS_COMPILE=$TOOLCHAIN/$TOOLCHAIN_PREFIX 2>&1 | tee make.out
 #		make V=1 -j$CPU_JOB_NUM ARCH=arm CROSS_COMPILE=$TOOLCHAIN/$TOOLCHAIN_PREFIX 2>&1 | tee make.out
 		cp arch/arm/boot/zImage /home/steven/Android/create_boot.img/
-=======
+
 		make -j$CPU_JOB_NUM ARCH=arm CROSS_COMPILE=$TCPATH/$TOOLCHAIN_PREFIX 2>&1 | tee make.out
 #		make V=1 -j$CPU_JOB_NUM ARCH=arm CROSS_COMPILE=$TCPATH/$TOOLCHAIN_PREFIX 2>&1 | tee make.out
                 echo "Copying zImage to $DPATH/kernel"
