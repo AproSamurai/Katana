@@ -77,11 +77,11 @@ TARGET_LOCALE="vzw"
 
 
 #uncomment to add custom version string
-#export KBUILD_BUILD_VERSION="nubernel-EC05_v0.0.0"
+#export KBUILD_BUILD_VERSION="$CUSTOMVERSION"
 DEFCONFIG_STRING=Shuriken_defconfig
+LOCALVERSION_STRING="$CUSTOMVERSION"
+CUSTOMVERSION="Shuriken-2.0"
 
-#LOCALVERSION
-LOCALVERSION="Shuriken-2.0"
 
 #TOOLCHAIN=`pwd`/toolchains/android-toolchain-4.4.3/bin
 #TOOLCHAIN_PREFIX=arm-linux-androideabi-
