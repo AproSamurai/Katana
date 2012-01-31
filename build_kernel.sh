@@ -8,11 +8,12 @@
 #
 
 #uncomment to add custom version string
-#export KBUILD_BUILD_VERSION=""
+export KBUILD_BUILD_VERSION="$CUSTOMVERSION"
 DEFCONFIG_STRING=Shuriken_defconfig
 DEVICEPATH=device/samsung/epicmtd
 TOOLCHAINPATH=/toolchain/arm-eabi-4.4.3/bin
-
+LOCALVERSION_STRING="-$CUSTOMVERSION"
+CUSTOMVERSION="Shuriken-2.0"
 
 
 # Detect host OS
@@ -77,9 +78,9 @@ TARGET_LOCALE="vzw"
 
 
 #uncomment to add custom version string
-#export KBUILD_BUILD_VERSION="$CUSTOMVERSION"
+export KBUILD_BUILD_VERSION="$CUSTOMVERSION"
 DEFCONFIG_STRING=Shuriken_defconfig
-LOCALVERSION_STRING="$CUSTOMVERSION"
+LOCALVERSION_STRING="-$CUSTOMVERSION"
 CUSTOMVERSION="Shuriken-2.0"
 
 
@@ -141,6 +142,7 @@ BUILD_KERNEL()
 		make -j$CPU_JOB_NUM ARCH=arm CROSS_COMPILE=$TOOLCHAIN/$TOOLCHAIN_PREFIX 2>&1 | tee make.out
 #		make V=1 -j$CPU_JOB_NUM ARCH=arm CROSS_COMPILE=$TOOLCHAIN/$TOOLCHAIN_PREFIX 2>&1 | tee make.out
 		cp arch/arm/boot/zImage /home/steven/Android/create_boot.img/
+		cp arcm/arm/boot/zImage /home/steven/Android/Katana/tools/kexec-cwm-test-zip
 
 		make -j$CPU_JOB_NUM ARCH=arm CROSS_COMPILE=$TCPATH/$TOOLCHAIN_PREFIX 2>&1 | tee make.out
 #		make V=1 -j$CPU_JOB_NUM ARCH=arm CROSS_COMPILE=$TCPATH/$TOOLCHAIN_PREFIX 2>&1 | tee make.out
