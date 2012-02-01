@@ -9,7 +9,7 @@
 
 #uncomment to add custom version string
 export KBUILD_BUILD_VERSION="$CUSTOMVERSION"
-DEFCONFIG_STRING=Shuriken_defconfig
+DEFCONFIG_STRING=cyanogenmod_epicmtd_defconfig
 DEVICEPATH=device/samsung/epicmtd
 TOOLCHAINPATH=/toolchain/arm-eabi-4.4.3/bin
 LOCALVERSION_STRING="-$CUSTOMVERSION"
@@ -79,7 +79,7 @@ TARGET_LOCALE="vzw"
 
 #uncomment to add custom version string
 export KBUILD_BUILD_VERSION="$CUSTOMVERSION"
-DEFCONFIG_STRING=Shuriken_defconfig
+DEFCONFIG_STRING=cyanogenmod_epicmtd_defconfig
 LOCALVERSION_STRING="-$CUSTOMVERSION"
 CUSTOMVERSION="Shuriken-2.0"
 
