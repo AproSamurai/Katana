@@ -148,7 +148,9 @@ BUILD_KERNEL()
 		./create_boot.img.sh cm		
 		cp /home/steven/Android/create_boot.img/boot.img /home/steven/Android/flashablezip/Shuriken
 		cd /home/steven/Android/flashablezip/Shuriken
+		rm -f Shuriken.zip		
 		zip -r Shuriken *
+		cp /home/steven/Android/flashablezip/Shuriken/Shuriken.zip /home/steven/Dropbox/Public/Shuriken/Kernel
 
                 
 	popd
