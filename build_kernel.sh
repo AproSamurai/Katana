@@ -192,7 +192,13 @@ BUILD_KERNEL()
 		git checkout CM9
 		cp /home/steven/Android/Katana/Kernel/arch/arm/boot/zImage /home/steven/Android/create_boot.img/		
 		./create_boot.img.sh cm		
+<<<<<<< HEAD
 >>>>>>> 6a99ef6... Organized things involving create_boot.img.sh differently
+=======
+		cp /home/steven/Android/create_boot.img/boot.img /home/steven/Android/flashablezip/Shuriken
+		cd /home/steven/Android/flashablezip/Shuriken
+		zip -r Shuriken *
+>>>>>>> cd6e648... Added creation of flashable zip to build script
 
                 
 	popd
