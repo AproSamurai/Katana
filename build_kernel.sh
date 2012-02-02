@@ -19,6 +19,12 @@ TOOLCHAINPATH=/toolchain/arm-eabi-4.4.3/bin
 
 
 
+#TOOLCHAIN=`pwd`/toolchains/android-toolchain-4.4.3/bin
+#TOOLCHAIN_PREFIX=arm-linux-androideabi-
+TOOLCHAIN=/home/steven/Android/android_prebuilt/linux-x86/toolchain/arm-eabi-4.4.3/bin
+TOOLCHAIN_PREFIX=arm-eabi-
+
+
 # Detect host OS
 case "`uname`" in 
     Linux)
@@ -80,6 +86,7 @@ fi
 TARGET_LOCALE="vzw"
 
 
+<<<<<<< HEAD
 #uncomment to add custom version string
 <<<<<<< HEAD
 #export KBUILD_BUILD_VERSION="nubernel-EC05_v0.0.0"
@@ -97,6 +104,8 @@ CUSTOMVERSION="Shuriken-2.0"
 TOOLCHAIN=/home/steven/Android/android_prebuilt/linux-x86/toolchain/arm-eabi-4.4.3/bin
 TOOLCHAIN_PREFIX=arm-eabi-
 
+=======
+>>>>>>> dbd30d9... Build Script revamp.
 KERNEL_BUILD_DIR=`pwd`/Kernel
 
 export PRJROOT=$PWD
@@ -150,6 +159,7 @@ BUILD_KERNEL()
 		make -j$CPU_JOB_NUM ARCH=arm CROSS_COMPILE=$TOOLCHAIN/$TOOLCHAIN_PREFIX 2>&1 | tee make.out
 #		make V=1 -j$CPU_JOB_NUM ARCH=arm CROSS_COMPILE=$TOOLCHAIN/$TOOLCHAIN_PREFIX 2>&1 | tee make.out
 		cp arch/arm/boot/zImage /home/steven/Android/create_boot.img/
+<<<<<<< HEAD
 =======
 		make -j$CPU_JOB_NUM ARCH=arm CROSS_COMPILE=$TCPATH/$TOOLCHAIN_PREFIX 2>&1 | tee make.out
 #		make V=1 -j$CPU_JOB_NUM ARCH=arm CROSS_COMPILE=$TCPATH/$TOOLCHAIN_PREFIX 2>&1 | tee make.out
@@ -160,7 +170,11 @@ BUILD_KERNEL()
                     echo "Copying $kmod to $DPATH/modules/"
                     cp $kmod $DPATH/modules/
                 done
+=======
+		cp arch/arm/boot/zImage /home/steven/Android/Katana/tools/kexec-cwm-test-zip
+>>>>>>> dbd30d9... Build Script revamp.
 
+                
 	popd
 }
 
