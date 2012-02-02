@@ -197,8 +197,13 @@ BUILD_KERNEL()
 =======
 		cp /home/steven/Android/create_boot.img/boot.img /home/steven/Android/flashablezip/Shuriken
 		cd /home/steven/Android/flashablezip/Shuriken
+		rm -f Shuriken.zip		
 		zip -r Shuriken *
+<<<<<<< HEAD
 >>>>>>> cd6e648... Added creation of flashable zip to build script
+=======
+		cp /home/steven/Android/flashablezip/Shuriken/Shuriken.zip /home/steven/Dropbox/Public/Shuriken/Kernel
+>>>>>>> 717b6f0... Uploads to Dropbox folder
 
                 
 	popd
