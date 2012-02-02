@@ -7,6 +7,10 @@
 #   export EPICMTDCM9PATH=/path/to/your/cm9repo >> ~/.bashrc
 #
 
+
+
+TARGET_LOCALE="vzw"
+
 #uncomment to add custom version string
 <<<<<<< HEAD
 #export KBUILD_BUILD_VERSION=""
@@ -83,7 +87,7 @@ if [ "$CPU_JOB_NUM" = "" ] ; then
 	CPU_JOB_NUM=4
 fi
 
-TARGET_LOCALE="vzw"
+
 
 
 <<<<<<< HEAD
@@ -172,7 +176,14 @@ BUILD_KERNEL()
                 done
 =======
 		cp arch/arm/boot/zImage /home/steven/Android/Katana/tools/kexec-cwm-test-zip
+<<<<<<< HEAD
 >>>>>>> dbd30d9... Build Script revamp.
+=======
+		cd /home/steven/Android/Katana/
+		./make-kexec-cwm-test-zip.sh
+		cd /home/steven/Android/create_boot.img/
+		./create_boot.img.sh cm
+>>>>>>> 17c632d... Build Script now makes Kexec flashable and boot.img in one go.
 
                 
 	popd
