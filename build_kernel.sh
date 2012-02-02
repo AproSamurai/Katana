@@ -146,6 +146,9 @@ BUILD_KERNEL()
 		git checkout CM9
 		cp /home/steven/Android/Katana/Kernel/arch/arm/boot/zImage /home/steven/Android/create_boot.img/		
 		./create_boot.img.sh cm		
+		cp /home/steven/Android/create_boot.img/boot.img /home/steven/Android/flashablezip/Shuriken
+		cd /home/steven/Android/flashablezip/Shuriken
+		zip -r Shuriken *
 
                 
 	popd
