@@ -139,12 +139,13 @@ BUILD_KERNEL()
 
 		make -j$CPU_JOB_NUM ARCH=arm CROSS_COMPILE=$TOOLCHAIN/$TOOLCHAIN_PREFIX 2>&1 | tee make.out
 #		make V=1 -j$CPU_JOB_NUM ARCH=arm CROSS_COMPILE=$TOOLCHAIN/$TOOLCHAIN_PREFIX 2>&1 | tee make.out
-		cp arch/arm/boot/zImage /home/steven/Android/create_boot.img/
 		cp arch/arm/boot/zImage /home/steven/Android/Katana/tools/kexec-cwm-test-zip
 		cd /home/steven/Android/Katana/
 		./make-kexec-cwm-test-zip.sh
 		cd /home/steven/Android/create_boot.img/
-		./create_boot.img.sh cm
+		git checkout CM9
+		cp /home/steven/Android/Katana/Kernel/arch/arm/boot/zImage /home/steven/Android/create_boot.img/		
+		./create_boot.img.sh cm		
 
                 
 	popd
