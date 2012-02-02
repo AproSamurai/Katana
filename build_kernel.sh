@@ -7,6 +7,10 @@
 #   export EPICMTDCM9PATH=/path/to/your/cm9repo >> ~/.bashrc
 #
 
+
+
+TARGET_LOCALE="vzw"
+
 #uncomment to add custom version string
 export KBUILD_BUILD_VERSION="$CUSTOMVERSION"
 DEFCONFIG_STRING=cyanogenmod_epicmtd_defconfig
@@ -80,7 +84,7 @@ if [ "$CPU_JOB_NUM" = "" ] ; then
 	CPU_JOB_NUM=4
 fi
 
-TARGET_LOCALE="vzw"
+
 
 
 KERNEL_BUILD_DIR=`pwd`/Kernel
@@ -137,6 +141,10 @@ BUILD_KERNEL()
 #		make V=1 -j$CPU_JOB_NUM ARCH=arm CROSS_COMPILE=$TOOLCHAIN/$TOOLCHAIN_PREFIX 2>&1 | tee make.out
 		cp arch/arm/boot/zImage /home/steven/Android/create_boot.img/
 		cp arch/arm/boot/zImage /home/steven/Android/Katana/tools/kexec-cwm-test-zip
+		cd /home/steven/Android/Katana/
+		./make-kexec-cwm-test-zip.sh
+		cd /home/steven/Android/create_boot.img/
+		./create_boot.img.sh cm
 
                 
 	popd
