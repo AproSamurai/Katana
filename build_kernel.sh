@@ -149,7 +149,7 @@ BUILD_KERNEL()
 		cp /home/steven/Android/create_boot.img/boot.img /home/steven/Android/flashablezip/ShurikenBeta
 		cd /home/steven/Android/flashablezip/ShurikenBeta
 		rm -f ShurikenBeta.zip		
-		zip -r ShurikenVoodoo *
+		zip -r ShurikenBeta *
 		cp /home/steven/Android/flashablezip/ShurikenBeta/ShurikenBeta.zip /home/steven/Dropbox/Public/Shuriken/Kernel
 		
 
