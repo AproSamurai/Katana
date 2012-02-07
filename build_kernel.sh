@@ -146,11 +146,11 @@ BUILD_KERNEL()
 		git checkout CM9
 		cp /home/steven/Android/Katana/Kernel/arch/arm/boot/zImage /home/steven/Android/create_boot.img/		
 		./create_boot.img.sh cm		
-		cp /home/steven/Android/create_boot.img/boot.img /home/steven/Android/flashablezip/ShurikenVoodoo
-		cd /home/steven/Android/flashablezip/ShurikenVoodoo
-		rm -f ShurikenVoodoo.zip		
+		cp /home/steven/Android/create_boot.img/boot.img /home/steven/Android/flashablezip/ShurikenBeta
+		cd /home/steven/Android/flashablezip/ShurikenBeta
+		rm -f ShurikenBeta.zip		
 		zip -r ShurikenVoodoo *
-		cp /home/steven/Android/flashablezip/ShurikenVoodoo/ShurikenVoodoo.zip /home/steven/Dropbox/Public/Shuriken/Kernel
+		cp /home/steven/Android/flashablezip/ShurikenBeta/ShurikenBeta.zip /home/steven/Dropbox/Public/Shuriken/Kernel
 		
 
                 
