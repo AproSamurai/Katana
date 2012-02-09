@@ -1,0 +1,45 @@
+ui_print("");
+ui_print("Boot kexec zImage");
+ui_print("");
+show_progress(1.0, 0);
+
+ui_print("Create mount symlink.");
+run_program("/sbin/ln",       "-s", "/sbin/mount",       "/tmp/mount");
+run_program("/system/bin/ln", "-s", "/system/bin/mount", "/tmp/mount");
+set_progress(0.2);
+
+ui_print("Remount partitions read-only.");
+run_program("/tmp/mount", "-ro", "remount", "", "/mnt/.lfs");
+run_program("/tmp/mount", "-ro", "remount", "", "/system");
+run_program("/tmp/mount", "-ro", "remount", "", "/data");
+run_program("/tmp/mount", "-ro", "remount", "", "/cache");
+set_progress(0.3);
+
+ui_print("(Re)mount /sdcard read-only.");
+run_program("/tmp/mount", "-ro", "remount", "", "/sdcard");
+run_program("/tmp/mount", "-rt", "vfat", "/dev/block/mmcblk0p1", "/sdcard");
+set_progress(0.5);
+
+ui_print("Unpack kexec.");
+package_extract_file("kexec", "/tmp/kexec");
+set_perm(0, 0, 0755, "/tmp/kexec");
+set_progress(0.6);
+
+ui_print("Unpack zImage.");
+package_extract_file("zImage", "/tmp/zImage");
+set_perm(0, 0, 0755, "/tmp/zImage");
+set_progress(0.7);
+
+ui_print("Load zImage.");
+run_program("/tmp/kexec", "--load-hardboot", "--mem-min=0x50000000",
+            "--append=console=ttySAC2,115200 loglevel=4",
+            "/tmp/zImage");
+set_progress(0.8);
+
+ui_print("Sync.");
+run_program("/sbin/sync");
+run_program("/system/bin/sync");
+set_progress(1.0);
+
+ui_print("Reboot into zImage.");
+run_program("/tmp/kexec", "-e");

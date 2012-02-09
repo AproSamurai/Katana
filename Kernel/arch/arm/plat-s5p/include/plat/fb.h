@@ -46,8 +46,8 @@ struct s3c_platform_fb {
 	int		nr_buffers[5];
 	int		default_win;
 	int		swap;
-        phys_addr_t     pmem_start; /* starting physical address of memory region */
-        size_t          pmem_size; /* size of memory region */
+        phys_addr_t     pmem_start[5]; /* starting physical address of memory region */
+        size_t          pmem_size[5]; /* size of memory region */
 #if defined(CONFIG_FB_S3C_MIPI_LCD)
 	void		*lcd_data;
 	unsigned int	sub_lcd_enabled;

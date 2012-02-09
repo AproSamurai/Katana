@@ -5,7 +5,11 @@
 *.o
 *.o.d
 *.order
+tools/kexec-cwm-test-zip/META-INF/com/google/android/update-binary
+tools/kexec-cwm-test-zip/zImage
+boot_zImage.zip
 Kernel/.config
+Kernel/.config.old
 Kernel/.missing-syscalls.d
 Kernel/.tmp_System.map
 Kernel/.tmp_kallsyms1.S
@@ -33,6 +37,7 @@ Kernel/drivers/misc/vibetonz/vibrator.mod.c
 Kernel/drivers/net/tun.mod.c
 Kernel/drivers/net/wireless/bcm4329/victory/dhd.mod.c
 Kernel/drivers/net/wireless/bcm4329/victory/src/wl/sys/hotspot_event_monitoring.mod.c
+Kernel/drivers/net/wireless/bcm4329/bcm4329.mod.c
 Kernel/drivers/net/wireless/wimax/cmc7xx_sdio.mod.c
 Kernel/drivers/net/wireless/wimaxgpio/wimax_gpio.mod.c
 Kernel/drivers/onedram/dpram/dpram.mod.c
@@ -61,6 +66,7 @@ Kernel/scripts/conmakehash
 Kernel/scripts/kallsyms
 Kernel/scripts/kconfig/conf
 Kernel/scripts/kconfig/lex.zconf.c
+Kernel/scripts/kconfig/mconf
 Kernel/scripts/kconfig/zconf.hash.c
 Kernel/scripts/kconfig/zconf.tab.c
 Kernel/scripts/mod/elfconfig.h
