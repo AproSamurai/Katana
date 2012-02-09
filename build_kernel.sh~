@@ -162,10 +162,10 @@ BUILD_KERNEL()
 
 		make -j$CPU_JOB_NUM ARCH=arm CROSS_COMPILE=$TOOLCHAIN/$TOOLCHAIN_PREFIX 2>&1 | tee make.out
 #		make V=1 -j$CPU_JOB_NUM ARCH=arm CROSS_COMPILE=$TOOLCHAIN/$TOOLCHAIN_PREFIX 2>&1 | tee make.out
-<<<<<<< HEAD
+
 		cp arch/arm/boot/zImage /home/steven/Android/create_boot.img/
-<<<<<<< HEAD
-=======
+
+
 		make -j$CPU_JOB_NUM ARCH=arm CROSS_COMPILE=$TCPATH/$TOOLCHAIN_PREFIX 2>&1 | tee make.out
 #		make V=1 -j$CPU_JOB_NUM ARCH=arm CROSS_COMPILE=$TCPATH/$TOOLCHAIN_PREFIX 2>&1 | tee make.out
                 echo "Copying zImage to $DPATH/kernel"
@@ -175,35 +175,21 @@ BUILD_KERNEL()
                     echo "Copying $kmod to $DPATH/modules/"
                     cp $kmod $DPATH/modules/
                 done
-=======
-=======
->>>>>>> 6a99ef6... Organized things involving create_boot.img.sh differently
+
 		cp arch/arm/boot/zImage /home/steven/Android/Katana/tools/kexec-cwm-test-zip
-<<<<<<< HEAD
->>>>>>> dbd30d9... Build Script revamp.
-=======
+
 		cd /home/steven/Android/Katana/
 		./make-kexec-cwm-test-zip.sh
 		cd /home/steven/Android/create_boot.img/
-<<<<<<< HEAD
 		./create_boot.img.sh cm
->>>>>>> 17c632d... Build Script now makes Kexec flashable and boot.img in one go.
-=======
 		git checkout CM9
 		cp /home/steven/Android/Katana/Kernel/arch/arm/boot/zImage /home/steven/Android/create_boot.img/		
 		./create_boot.img.sh cm		
-<<<<<<< HEAD
->>>>>>> 6a99ef6... Organized things involving create_boot.img.sh differently
-=======
 		cp /home/steven/Android/create_boot.img/boot.img /home/steven/Android/flashablezip/Shuriken
 		cd /home/steven/Android/flashablezip/Shuriken
 		rm -f Shuriken.zip		
 		zip -r Shuriken *
-<<<<<<< HEAD
->>>>>>> cd6e648... Added creation of flashable zip to build script
-=======
 		cp /home/steven/Android/flashablezip/Shuriken/Shuriken.zip /home/steven/Dropbox/Public/Shuriken/Kernel
->>>>>>> 717b6f0... Uploads to Dropbox folder
 
                 
 	popd

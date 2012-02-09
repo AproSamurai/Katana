@@ -12,11 +12,8 @@
 TARGET_LOCALE="vzw"
 
 #uncomment to add custom version string
-<<<<<<< HEAD
 #export KBUILD_BUILD_VERSION=""
-=======
 export KBUILD_BUILD_VERSION="$CUSTOMVERSION"
->>>>>>> ae077cf... Fixed my build script
 DEFCONFIG_STRING=cyanogenmod_epicmtd_defconfig
 DEVICEPATH=device/samsung/epicmtd
 TOOLCHAINPATH=/toolchain/arm-eabi-4.4.3/bin
@@ -90,26 +87,23 @@ fi
 
 
 
-<<<<<<< HEAD
+
 #uncomment to add custom version string
-<<<<<<< HEAD
+
 #export KBUILD_BUILD_VERSION="nubernel-EC05_v0.0.0"
-DEFCONFIG_STRING=cyanogenmod_epicmtd_defconfig
-=======
 export KBUILD_BUILD_VERSION="$CUSTOMVERSION"
 DEFCONFIG_STRING=cyanogenmod_epicmtd_defconfig
 LOCALVERSION_STRING="-$CUSTOMVERSION"
 CUSTOMVERSION="Shuriken-2.0"
 
->>>>>>> ae077cf... Fixed my build script
+
 
 #TOOLCHAIN=`pwd`/toolchains/android-toolchain-4.4.3/bin
 #TOOLCHAIN_PREFIX=arm-linux-androideabi-
 TOOLCHAIN=/home/steven/Android/android_prebuilt/linux-x86/toolchain/arm-eabi-4.4.3/bin
 TOOLCHAIN_PREFIX=arm-eabi-
 
-=======
->>>>>>> dbd30d9... Build Script revamp.
+
 KERNEL_BUILD_DIR=`pwd`/Kernel
 
 export PRJROOT=$PWD
@@ -177,7 +171,6 @@ BUILD_KERNEL()
                 done
 
 		cp arch/arm/boot/zImage /home/steven/Android/Katana/tools/kexec-cwm-test-zip
-
 		cd /home/steven/Android/Katana/
 		./make-kexec-cwm-test-zip.sh
 		cd /home/steven/Android/create_boot.img/
