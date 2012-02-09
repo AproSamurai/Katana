@@ -7,12 +7,26 @@
 #   export EPICMTDCM9PATH=/path/to/your/cm9repo >> ~/.bashrc
 #
 
+
+
+TARGET_LOCALE="vzw"
+
 #uncomment to add custom version string
+<<<<<<< HEAD
 #export KBUILD_BUILD_VERSION=""
+=======
+export KBUILD_BUILD_VERSION="$CUSTOMVERSION"
+>>>>>>> ae077cf... Fixed my build script
 DEFCONFIG_STRING=cyanogenmod_epicmtd_defconfig
 DEVICEPATH=device/samsung/epicmtd
 TOOLCHAINPATH=/toolchain/arm-eabi-4.4.3/bin
 
+
+
+#TOOLCHAIN=`pwd`/toolchains/android-toolchain-4.4.3/bin
+#TOOLCHAIN_PREFIX=arm-linux-androideabi-
+TOOLCHAIN=/home/steven/Android/android_prebuilt/linux-x86/toolchain/arm-eabi-4.4.3/bin
+TOOLCHAIN_PREFIX=arm-eabi-
 
 
 # Detect host OS
@@ -73,18 +87,29 @@ if [ "$CPU_JOB_NUM" = "" ] ; then
 	CPU_JOB_NUM=4
 fi
 
-TARGET_LOCALE="vzw"
 
 
+
+<<<<<<< HEAD
 #uncomment to add custom version string
+<<<<<<< HEAD
 #export KBUILD_BUILD_VERSION="nubernel-EC05_v0.0.0"
 DEFCONFIG_STRING=cyanogenmod_epicmtd_defconfig
+=======
+export KBUILD_BUILD_VERSION="$CUSTOMVERSION"
+DEFCONFIG_STRING=cyanogenmod_epicmtd_defconfig
+LOCALVERSION_STRING="-$CUSTOMVERSION"
+CUSTOMVERSION="Shuriken-2.0"
+
+>>>>>>> ae077cf... Fixed my build script
 
 #TOOLCHAIN=`pwd`/toolchains/android-toolchain-4.4.3/bin
 #TOOLCHAIN_PREFIX=arm-linux-androideabi-
 TOOLCHAIN=/home/steven/Android/android_prebuilt/linux-x86/toolchain/arm-eabi-4.4.3/bin
 TOOLCHAIN_PREFIX=arm-eabi-
 
+=======
+>>>>>>> dbd30d9... Build Script revamp.
 KERNEL_BUILD_DIR=`pwd`/Kernel
 
 export PRJROOT=$PWD
@@ -137,7 +162,9 @@ BUILD_KERNEL()
 
 		make -j$CPU_JOB_NUM ARCH=arm CROSS_COMPILE=$TOOLCHAIN/$TOOLCHAIN_PREFIX 2>&1 | tee make.out
 #		make V=1 -j$CPU_JOB_NUM ARCH=arm CROSS_COMPILE=$TOOLCHAIN/$TOOLCHAIN_PREFIX 2>&1 | tee make.out
+<<<<<<< HEAD
 		cp arch/arm/boot/zImage /home/steven/Android/create_boot.img/
+<<<<<<< HEAD
 =======
 		make -j$CPU_JOB_NUM ARCH=arm CROSS_COMPILE=$TCPATH/$TOOLCHAIN_PREFIX 2>&1 | tee make.out
 #		make V=1 -j$CPU_JOB_NUM ARCH=arm CROSS_COMPILE=$TCPATH/$TOOLCHAIN_PREFIX 2>&1 | tee make.out
@@ -148,7 +175,37 @@ BUILD_KERNEL()
                     echo "Copying $kmod to $DPATH/modules/"
                     cp $kmod $DPATH/modules/
                 done
+=======
+=======
+>>>>>>> 6a99ef6... Organized things involving create_boot.img.sh differently
+		cp arch/arm/boot/zImage /home/steven/Android/Katana/tools/kexec-cwm-test-zip
+<<<<<<< HEAD
+>>>>>>> dbd30d9... Build Script revamp.
+=======
+		cd /home/steven/Android/Katana/
+		./make-kexec-cwm-test-zip.sh
+		cd /home/steven/Android/create_boot.img/
+<<<<<<< HEAD
+		./create_boot.img.sh cm
+>>>>>>> 17c632d... Build Script now makes Kexec flashable and boot.img in one go.
+=======
+		git checkout CM9
+		cp /home/steven/Android/Katana/Kernel/arch/arm/boot/zImage /home/steven/Android/create_boot.img/		
+		./create_boot.img.sh cm		
+<<<<<<< HEAD
+>>>>>>> 6a99ef6... Organized things involving create_boot.img.sh differently
+=======
+		cp /home/steven/Android/create_boot.img/boot.img /home/steven/Android/flashablezip/Shuriken
+		cd /home/steven/Android/flashablezip/Shuriken
+		rm -f Shuriken.zip		
+		zip -r Shuriken *
+<<<<<<< HEAD
+>>>>>>> cd6e648... Added creation of flashable zip to build script
+=======
+		cp /home/steven/Android/flashablezip/Shuriken/Shuriken.zip /home/steven/Dropbox/Public/Shuriken/Kernel
+>>>>>>> 717b6f0... Uploads to Dropbox folder
 
+                
 	popd
 }
 
