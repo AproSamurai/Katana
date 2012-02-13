@@ -50,14 +50,12 @@ snd-soc-wm8978-objs := wm8978.o
 snd-soc-wm8988-objs := wm8988.o
 snd-soc-wm8990-objs := wm8990.o
 snd-soc-wm8993-objs := wm8993.o
-<<<<<<< HEAD
 ifeq ($(CONFIG_SND_SOC_WM8994_VICTORY),y)
 ifeq ($(CONFIG_SND_VOODOO),y)
 snd-soc-wm8994-objs := wm8994_samsung.o wm8994_aries.o wm8994_voodoo.o
 else
 snd-soc-wm8994-objs := wm8994_samsung.o wm8994_aries.o
 endif
-=======
 ifeq ($(CONFIG_SND_SOC_WM8994_ARIES),y)
 snd-soc-wm8994-objs := wm8994_samsung.o wm8994_aries.o
 endif
@@ -66,7 +64,6 @@ snd-soc-wm8994-objs := crespo/wm8994_samsung.o crespo/wm8994_herring.o
 endif
 ifeq ($(CONFIG_SND_SOC_WM8994_VICTORY),y)
 snd-soc-wm8994-objs := victory/wm8994_samsung.o victory/wm8994_aries.o
->>>>>>> 20da9cc... Port crespo's GB wm8994 driver.
 endif
 ifeq ($(CONFIG_SND_SOC_WM8994_ATLAS),y)
 ifeq ($(CONFIG_S5PV210_GARNETT_DELTA),y)
@@ -151,3 +148,4 @@ obj-$(CONFIG_SND_SOC_MAX9877)	+= snd-soc-max9877.o
 obj-$(CONFIG_SND_SOC_TPA6130A2)	+= snd-soc-tpa6130a2.o
 obj-$(CONFIG_SND_SOC_WM2000)	+= snd-soc-wm2000.o
 obj-$(CONFIG_SND_SOC_WM9090)	+= snd-soc-wm9090.o
+endif
