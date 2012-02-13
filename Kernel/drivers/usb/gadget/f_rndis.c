@@ -731,11 +731,10 @@ rndis_bind(struct usb_configuration *c, struct usb_function *f)
 #endif
 
 	rndis_control_intf.bInterfaceNumber = status;
-<<<<<<< HEAD
+
 	//rndis_union_desc.bMasterInterface0 = status;
 	rndis_union_desc.bMasterInterface0 = 0;
-=======
->>>>>>> 5372af6... Add adb_rndis USB gadget mode, fix rndis support on Linux USB hosts.
+
 
 	status = usb_interface_id(c, f);
 	if (status < 0)
@@ -743,11 +742,10 @@ rndis_bind(struct usb_configuration *c, struct usb_function *f)
 	rndis->data_id = status;
 
 	rndis_data_intf.bInterfaceNumber = status;
-<<<<<<< HEAD
+
 	//rndis_union_desc.bSlaveInterface0 = status;
 	rndis_union_desc.bSlaveInterface0 = 1;
-=======
->>>>>>> 5372af6... Add adb_rndis USB gadget mode, fix rndis support on Linux USB hosts.
+
 
 	status = -ENODEV;
 
