@@ -52,22 +52,24 @@ static DEFINE_MUTEX(set_freq_lock);
 
 /* frequency */
 static struct cpufreq_frequency_table freq_table[] = {
-	{L0, 1200*1000},
-	{L1, 1128*1000},
-	{L2, 1000*1000},
-	{L3, 800*1000},
-	{L4, 600*1000},
-	{L5, 400*1000},
-	{L6, 200*1000},
-	{L7, 100*1000},
+	{L0, 1300*1000},	
+	{L1, 1200*1000},
+	{L2, 1100*1000},
+	{L3, 1000*1000},
+	{L4, 800*1000},
+	{L5, 600*1000},
+	{L6, 400*1000},
+	{L7, 200*1000},
+	{L8, 100*1000},
 	{0, CPUFREQ_TABLE_END},
 };
 
-extern int exp_UV_mV[10];
-unsigned int freq_uv_table[10][3] = {
+extern int exp_UV_mV[9];
+unsigned int freq_uv_table[9][3] = {
 	//frequency, stock voltage, current voltage
-	{1200000, 1300, 1300},
-	{1128000, 1300, 1300},
+	{1300000, 1350, 1350},	
+	{1200000, 1325, 1325},
+	{1100000, 1300, 1300},
 	{1000000, 1275, 1275},
 	{800000, 1200, 1200},
 	{600000, 1175, 1175},
@@ -83,74 +85,91 @@ struct s5pv210_dvs_conf {
 
 #ifdef CONFIG_DVFS_LIMIT
 static unsigned int g_dvfs_high_lock_token = 0;
-static unsigned int g_dvfs_high_lock_limit = 10;
+static unsigned int g_dvfs_high_lock_limit = 9;
 static unsigned int g_dvfslockval[DVFS_LOCK_TOKEN_NUM];
 //static DEFINE_MUTEX(dvfs_high_lock);
 #endif
 
-const unsigned long arm_volt_max = 1300000;
+const unsigned long arm_volt_max = 1375000;
 const unsigned long int_volt_max = 1250000;
 
 static struct s5pv210_dvs_conf dvs_conf[] = {
-	[L0] = { //1.2GHz
+	[L0] = { //1.3GHz
+		.arm_volt   = 1350000,
+		.int_volt   = 1125000,
+	},	
+	[L1] = { //1.2GHz
+		.arm_volt   = 1325000,
+		.int_volt   = 1125000,
+	},
+	[L2] = { //1.1GHz
 		.arm_volt   = 1300000,
 		.int_volt   = 1125000,
 	},
-	[L1] = { //1.128GHz
-		.arm_volt   = 1300000,
-		.int_volt   = 1125000,
-	},
-	[L2] = { //1.0GHz
+	[L3] = { //1.0GHz
 		.arm_volt   = 1275000,
 		.int_volt   = 1100000,
 	},
-	[L3] = { //800MHz
+	[L4] = { //800MHz
 		.arm_volt   = 1200000,
 		.int_volt   = 1100000,
 	},
-	[L4] = { //600MHz
+	[L5] = { //600MHz
 		.arm_volt   = 1175000,
 		.int_volt   = 1100000,
 	},
-	[L5] = { //400MHz
+	[L6] = { //400MHz
 		.arm_volt   = 1050000,
 		.int_volt   = 1100000,
 	},
-	[L6] = { //200MHz
+	[L7] = { //200MHz
 		.arm_volt   = 950000,
 		.int_volt   = 1100000,
 	},
-	[L7] = { //100MHz
+	[L8] = { //100MHz
 		.arm_volt   = 950000,
 		.int_volt   = 1000000,
 	},
 };
 
-static u32 clkdiv_val[10][11] = {
+static u32 clkdiv_val[9][11] = {
 	/*{ 1 APLL, 2 A2M, 3 HCLK_MSYS, 4 PCLK_MSYS,
 	 * 5 HCLK_DSYS, 6 PCLK_DSYS, 7 HCLK_PSYS, 8 PCLK_PSYS, 9 ONEDRAM,
 	 * 10 MFC, 11 G3D }
 	 */
-	/* L0 : [1200/200/200/100][166/83][133/66][200/200] */
+	/* L0 : [1300/200/200/100][166/83][133/66][200/200] */
+	{0, 6, 6, 1, 3, 1, 4, 1, 3, 0, 0},	
+	/* L1 : [1200/200/200/100][166/83][133/66][200/200] */
 	{0, 5, 5, 1, 3, 1, 4, 1, 3, 0, 0},
-	/* L1 : [1128/200/200/100][166/83][133/66][200/200] */
+	/* L2 : [1128/200/200/100][166/83][133/66][200/200] */
 	{0, 5, 5, 1, 3, 1, 4, 1, 3, 0, 0},
-	/* L2 : [1000/200/200/100][166/83][133/66][200/200] */
+	/* L3 : [1000/200/200/100][166/83][133/66][200/200] */
 	{0, 4, 4, 1, 3, 1, 4, 1, 3, 0, 0},
-	/* L3 : [800/200/200/100][166/83][133/66][200/200] */
+	/* L4 : [800/200/200/100][166/83][133/66][200/200] */
 	{0, 3, 3, 1, 3, 1, 4, 1, 3, 0, 0},
-	/* L4 : [600/200/200/100][166/83][133/66][200/200] */
+	/* L5 : [600/200/200/100][166/83][133/66][200/200] */
 	{0, 2, 2, 1, 3, 1, 4, 1, 3, 0, 0},
-	/* L5 : [400/200/200/100][166/83][133/66][200/200] */
+	/* L6 : [400/200/200/100][166/83][133/66][200/200] */
 	{1, 3, 1, 1, 3, 1, 4, 1, 3, 0, 0},
-	/* L6 : [200/200/200/100][166/83][133/66][200/200] */
+	/* L7 : [200/200/200/100][166/83][133/66][200/200] */
 	{3, 3, 0, 1, 3, 1, 4, 1, 3, 0, 0},
-	/* L7 : [100/100/100/100][83/83][66/66][100/100] */
+	/* L8 : [100/100/100/100][83/83][66/66][100/100] */
 	{7, 7, 0, 0, 7, 0, 9, 0, 7, 0, 0},
 };
 
 static struct s3c_freq clk_info[] = {
-	[L0] = {	/* L0: 1.2GHz */
+	[L0] = {	/* L0: 1.3GHz */
+		.fclk       = 1300000,
+		.armclk     = 1300000,
+		.hclk_tns   = 0,
+		.hclk       = 133000,
+		.pclk       = 66000,
+		.hclk_msys  = 188000,
+		.pclk_msys  = 94000,
+		.hclk_dsys  = 166750,
+		.pclk_dsys  = 83375,
+	},	
+	[L1] = {	/* L1: 1.2GHz */
 		.fclk       = 1200000,
 		.armclk     = 1200000,
 		.hclk_tns   = 0,
@@ -161,9 +180,9 @@ static struct s3c_freq clk_info[] = {
 		.hclk_dsys  = 166750,
 		.pclk_dsys  = 83375,
 	},
-	[L1] = {	/* L0: 1.128GHz */
-		.fclk       = 1128000,
-		.armclk     = 1128000,
+	[L2] = {	/* L2: 1.1GHz */
+		.fclk       = 1100000,
+		.armclk     = 1100000,
 		.hclk_tns   = 0,
 		.hclk       = 133000,
 		.pclk       = 66000,
@@ -172,7 +191,7 @@ static struct s3c_freq clk_info[] = {
 		.hclk_dsys  = 166750,
 		.pclk_dsys  = 83375,
 	},
-	[L2] = {	/* L0: 1.0GHz */
+	[L3] = {	/* L3: 1.0GHz */
 		.fclk       = 1000000,
 		.armclk     = 1000000,
 		.hclk_tns   = 0,
@@ -183,7 +202,7 @@ static struct s3c_freq clk_info[] = {
 		.hclk_dsys  = 166750,
 		.pclk_dsys  = 83375,
 	},
-	[L3] = {	/* L1: 800MHz */
+	[L4] = {	/* L4: 800MHz */
 		.fclk       = 800000,
 		.armclk     = 800000,
 		.hclk_tns   = 0,
@@ -194,7 +213,7 @@ static struct s3c_freq clk_info[] = {
 		.hclk_dsys  = 166750,
 		.pclk_dsys  = 83375,
 	},
-	[L4] = {	/* L1: 600MHz */
+	[L5] = {	/* L5: 600MHz */
 		.fclk       = 600000,
 		.armclk     = 600000,
 		.hclk_tns   = 0,
@@ -205,7 +224,7 @@ static struct s3c_freq clk_info[] = {
 		.hclk_dsys  = 166750,
 		.pclk_dsys  = 83375,
 	},
-	[L5] = {	/* L2: 400MHz */
+	[L6] = {	/* L6: 400MHz */
 		.fclk       = 800000,
 		.armclk     = 400000,
 		.hclk_tns   = 0,
@@ -216,7 +235,7 @@ static struct s3c_freq clk_info[] = {
 		.hclk_dsys  = 166750,
 		.pclk_dsys  = 83375,
 	},
-	[L6] = {	/* L3: 200MHz */
+	[L7] = {	/* L7: 200MHz */
 		.fclk       = 800000,
 		.armclk     = 200000,
 		.hclk_tns   = 0,
@@ -227,7 +246,7 @@ static struct s3c_freq clk_info[] = {
 		.hclk_dsys  = 166750,
 		.pclk_dsys  = 83375,
 	},
-	[L7] = {	/* L4: 100MHz */
+	[L8] = {	/* L8: 100MHz */
 		.fclk       = 800000,
 		.armclk     = 100000,
 		.hclk_tns   = 0,
@@ -344,22 +363,26 @@ static void s5pv210_cpufreq_clksrcs_MPLL2APLL(unsigned int index,
 	 */
 	switch (index){
 	case L0:
+		/* APLL FOUT becomes 1300 Mhz */
+		__raw_writel(PLL45XX_APLL_VAL_1300, S5P_APLL_CON);
+		break;	
+	case L1:
 		/* APLL FOUT becomes 1200 Mhz */
 		__raw_writel(PLL45XX_APLL_VAL_1200, S5P_APLL_CON);
 		break;
-	case L1:
-		/* APLL FOUT becomes 1128 Mhz */
-		__raw_writel(PLL45XX_APLL_VAL_1128, S5P_APLL_CON);
-		break;
 	case L2:
+		/* APLL FOUT becomes 1100 Mhz */
+		__raw_writel(PLL45XX_APLL_VAL_1100, S5P_APLL_CON);
+		break;
+	case L3:
 		/* APLL FOUT becomes 1000 Mhz */
 		__raw_writel(PLL45XX_APLL_VAL_1000, S5P_APLL_CON);
 		break;
-	case L3:
+	case L4:
 		/* APLL FOUT becomes 800 Mhz */
 		__raw_writel(PLL45XX_APLL_VAL_800, S5P_APLL_CON);
 		break;
-	default: //L4
+	default: //L5
 		/* APLL FOUT becomes 600 Mhz */
 		__raw_writel(PLL45XX_APLL_VAL_600, S5P_APLL_CON);
 		break;
@@ -638,7 +661,7 @@ static int s5pv210_cpufreq_target(struct cpufreq_policy *policy,
 		s5pv210_cpufreq_clksrcs_APLL2MPLL(index, bus_speed_changing);
 
 	/* ARM MCS value changed */
-	if (index <= L5) { //400MHz
+	if (index <= L6) { //400MHz
 		reg = __raw_readl(S5P_ARM_MCS_CON);
 		reg &= ~0x3;
 		reg |= 0x1;
@@ -668,7 +691,7 @@ static int s5pv210_cpufreq_target(struct cpufreq_policy *policy,
 	} while (reg & 0xff);
 
 	/* ARM MCS value changed */
-	if (index > L5) {
+	if (index > L6) {
 		reg = __raw_readl(S5P_ARM_MCS_CON);
 		reg &= ~0x3;
 		reg |= 0x3;
@@ -764,9 +787,9 @@ static int s5pv210_cpufreq_resume(struct cpufreq_policy *policy)
 
 	if (level == CPUFREQ_TABLE_END) { /* Not found */
 		pr_err("[%s:%d] clock speed does not match: "
-				"%d. Using L3 of 800MHz.\n",
+				"%d. Using L4 of 800MHz.\n",
 				__FILE__, __LINE__, rate);
-		level = L3;
+		level = L4;
 	}
 
 	memcpy(&s3c_freqs.old, &clk_info[level],
@@ -818,16 +841,16 @@ static int __init s5pv210_cpufreq_driver_init(struct cpufreq_policy *policy)
 
 	if (level == CPUFREQ_TABLE_END) { /* Not found */
 		pr_err("[%s:%d] clock speed does not match: "
-				"%d. Using L3 of 800MHz.\n",
+				"%d. Using L4 of 800MHz.\n",
 				__FILE__, __LINE__, rate);
-		level = L3;
+		level = L4;
 	}
 
 	backup_dmc0_reg = __raw_readl(S5P_VA_DMC0 + 0x30) & 0xFFFF;
 	backup_dmc1_reg = __raw_readl(S5P_VA_DMC1 + 0x30) & 0xFFFF;
 	backup_freq_level = level;
 	mpll_clk = clk_get(NULL, "mout_mpll");
-	mpll_freq = clk_get_rate(mpll_clk) / 1200 / 1200; /* in MHz */
+	mpll_freq = clk_get_rate(mpll_clk) / 1300 / 1300; /* in MHz */
 	clk_put(mpll_clk);
 	i = 0;
 	do {
@@ -836,7 +859,7 @@ static int __init s5pv210_cpufreq_driver_init(struct cpufreq_policy *policy)
 			apll_freq_max = clk_info[index].fclk;
 		i++;
 	} while (freq_table[i].frequency != CPUFREQ_TABLE_END);
-	apll_freq_max /= 1200; /* in MHz */
+	apll_freq_max /= 1300; /* in MHz */
 
 	memcpy(&s3c_freqs.old, &clk_info[level],
 			sizeof(struct s3c_freq));
