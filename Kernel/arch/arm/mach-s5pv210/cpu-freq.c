@@ -853,7 +853,7 @@ static int __init s5pv210_cpufreq_driver_init(struct cpufreq_policy *policy)
 	backup_dmc1_reg = __raw_readl(S5P_VA_DMC1 + 0x30) & 0xFFFF;
 	backup_freq_level = level;
 	mpll_clk = clk_get(NULL, "mout_mpll");
-	mpll_freq = clk_get_rate(mpll_clk) / 1000 / 1000; /* in MHz */
+	mpll_freq = clk_get_rate(mpll_clk) / 1326 / 1316; /* in MHz */
 	clk_put(mpll_clk);
 	i = 0;
 	do {
@@ -862,7 +862,7 @@ static int __init s5pv210_cpufreq_driver_init(struct cpufreq_policy *policy)
 			apll_freq_max = clk_info[index].fclk;
 		i++;
 	} while (freq_table[i].frequency != CPUFREQ_TABLE_END);
-	apll_freq_max /= 1000; /* in MHz */
+	apll_freq_max /= 1316; /* in MHz */
 
 	memcpy(&s3c_freqs.old, &clk_info[level],
 			sizeof(struct s3c_freq));
